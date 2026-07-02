@@ -1,0 +1,186 @@
+{% extends 'store/base.html' %}
+{% load static %}
+
+{% block title %}Shipping Policy — Zavi Luxe{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'store/css/policy.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<!-- Page Header -->
+<div class="policy-hero">
+  <div class="container">
+    <span class="section-eyebrow">Fast &amp; Reliable</span>
+    <h1 class="section-title">Shipping <em>Policy</em></h1>
+    <p class="policy-hero-sub">We ensure your Zavi Luxe order reaches you safely, swiftly, and beautifully packaged.</p>
+  </div>
+</div>
+
+<!-- Summary Cards -->
+<section class="section-sm">
+  <div class="container">
+    <div class="policy-summary-grid">
+      <div class="policy-summary-card">
+        <div class="policy-summary-icon"><i class="fas fa-shipping-fast"></i></div>
+        <h3 class="policy-summary-title">Free Shipping</h3>
+        <p class="policy-summary-text">Complimentary shipping on all orders above ₹2,999.</p>
+      </div>
+      <div class="policy-summary-card">
+        <div class="policy-summary-icon"><i class="fas fa-clock"></i></div>
+        <h3 class="policy-summary-title">Processing Time</h3>
+        <p class="policy-summary-text">Orders are processed within 1–2 business days of placement.</p>
+      </div>
+      <div class="policy-summary-card">
+        <div class="policy-summary-icon"><i class="fas fa-map-marked-alt"></i></div>
+        <h3 class="policy-summary-title">Pan-India Delivery</h3>
+        <p class="policy-summary-text">We deliver to all pin codes across India through trusted partners.</p>
+      </div>
+      <div class="policy-summary-card">
+        <div class="policy-summary-icon"><i class="fas fa-box-open"></i></div>
+        <h3 class="policy-summary-title">Premium Packaging</h3>
+        <p class="policy-summary-text">Every order is packed with care in our signature luxury packaging.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Shipping Rates Table -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">Transparent Pricing</span>
+      <h2 class="section-title">Shipping <em>Rates</em></h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="shipping-table-wrap">
+      <table class="shipping-table">
+        <thead>
+          <tr>
+            <th>Order Value</th>
+            <th>Shipping Method</th>
+            <th>Estimated Delivery</th>
+            <th>Cost</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Above ₹2,999</td>
+            <td>Standard Shipping</td>
+            <td>3–5 Business Days</td>
+            <td class="text-gold">FREE</td>
+          </tr>
+          <tr>
+            <td>Below ₹2,999</td>
+            <td>Standard Shipping</td>
+            <td>3–5 Business Days</td>
+            <td>₹99</td>
+          </tr>
+          <tr>
+            <td>Any Value</td>
+            <td>Express Shipping</td>
+            <td>1–2 Business Days</td>
+            <td>₹199</td>
+          </tr>
+          <tr>
+            <td>Any Value</td>
+            <td>Same-Day (Select Cities)</td>
+            <td>Same Day (order by 12 PM)</td>
+            <td>₹299</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="shipping-note">* Business days are Monday to Saturday, excluding public holidays. Delivery timelines may vary during peak seasons, sales events, or due to courier-related delays.</p>
+  </div>
+</section>
+
+<!-- Process Timeline -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">Your Order's Journey</span>
+      <h2 class="section-title">From Us <em>to You</em></h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="shipping-journey">
+      <div class="journey-step">
+        <div class="journey-icon"><i class="fas fa-mouse-pointer"></i></div>
+        <div class="journey-line"></div>
+        <h4 class="journey-title">Order Placed</h4>
+        <p class="journey-text">You place your order and receive a confirmation email with your order details.</p>
+      </div>
+      <div class="journey-step">
+        <div class="journey-icon"><i class="fas fa-boxes"></i></div>
+        <div class="journey-line"></div>
+        <h4 class="journey-title">Processing</h4>
+        <p class="journey-text">Our team picks, inspects, and packs your items in our signature luxury packaging.</p>
+      </div>
+      <div class="journey-step">
+        <div class="journey-icon"><i class="fas fa-truck"></i></div>
+        <div class="journey-line"></div>
+        <h4 class="journey-title">Dispatched</h4>
+        <p class="journey-text">Your order is handed to our courier partner. You receive a tracking link via email.</p>
+      </div>
+      <div class="journey-step">
+        <div class="journey-icon"><i class="fas fa-home"></i></div>
+        <div class="journey-line" style="display:none;"></div>
+        <h4 class="journey-title">Delivered</h4>
+        <p class="journey-text">Your order arrives at your doorstep. Unbox elegance. Enjoy your Zavi Luxe purchase.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Tracking & Info -->
+<section class="section">
+  <div class="container">
+    <div class="policy-details-grid">
+      <div class="policy-details-col">
+        <h3 class="policy-details-title"><i class="fas fa-search-location text-gold"></i> Order Tracking</h3>
+        <p class="policy-body-text">Once your order is dispatched, you will receive a tracking number via email. You can use this number to track your shipment directly on the courier's website. You can also check your order status anytime by visiting <a href="{% url 'orders' %}" class="text-gold">My Orders</a> in your account.</p>
+      </div>
+      <div class="policy-details-col">
+        <h3 class="policy-details-title"><i class="fas fa-exclamation-triangle text-gold"></i> Important Notes</h3>
+        <ul class="policy-list">
+          <li>Ensure your delivery address is accurate and complete</li>
+          <li>We are not liable for delays caused by incorrect addresses</li>
+          <li>Someone must be available to receive the parcel</li>
+          <li>In case of missed delivery, the courier will attempt re-delivery or leave a notification</li>
+          <li>For COD orders, please keep the exact amount ready</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Courier Partners -->
+<section class="section-sm">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">Our Trusted Network</span>
+      <h2 class="section-title">Courier <em>Partners</em></h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="courier-grid">
+      <div class="courier-card"><i class="fas fa-truck-moving"></i><span>BlueDart</span></div>
+      <div class="courier-card"><i class="fas fa-truck-moving"></i><span>Delhivery</span></div>
+      <div class="courier-card"><i class="fas fa-truck-moving"></i><span>Ekart</span></div>
+      <div class="courier-card"><i class="fas fa-truck-moving"></i><span>DTDC</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="policy-cta-section">
+  <div class="container">
+    <div class="policy-cta-inner">
+      <h2 class="policy-cta-title">Need help with your shipment?</h2>
+      <p class="policy-cta-text">Our support team is available Monday to Saturday, 10 AM – 7 PM IST to assist you.</p>
+      <a href="{% url 'contact' %}" class="btn btn-gold">Contact Us</a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

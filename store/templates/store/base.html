@@ -1,0 +1,215 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Zavi Luxe — Elevated Fashion{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&family=Cinzel:wght@400;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="{% static 'store/css/base.css' %}">
+  {% block extra_css %}{% endblock %}
+</head>
+
+<body>
+
+  <!-- Announcement Bar -->
+  <div class="announcement-bar">
+    <p>✦ Free shipping on orders above ₹2999 &nbsp;&nbsp;|&nbsp;&nbsp; Use code <strong>LUXE10</strong> for 10% off your
+      first order ✦</p>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <div class="nav-left">
+        <a href="{% url 'shop' %}?category=men" class="nav-link">Men</a>
+        <a href="{% url 'shop' %}?category=women" class="nav-link">Women</a>
+        <a href="{% url 'shop' %}?category=accessories" class="nav-link">Accessories</a>
+      </div>
+
+      <a href="{% url 'home' %}" class="nav-logo">
+        <img src="{% static 'store/images/logo4.png' %}" alt="Zavi Luxe" class="logo-img">
+        <span class="logo-text">ZAVI LUXE</span>
+      </a>
+
+      <div class="nav-right">
+        <a href="{% url 'search' %}" class="nav-icon" title="Search"><i class="fas fa-search"></i></a>
+        {% if user.is_authenticated %}
+        <a href="{% url 'wishlist' %}" class="nav-icon" title="Wishlist"><i class="fas fa-heart"></i></a>
+        <a href="{% url 'profile' %}" class="nav-icon" title="Account"><i class="fas fa-user"></i></a>
+        {% else %}
+        <a href="{% url 'login' %}" class="nav-icon" title="Login"><i class="fas fa-user"></i></a>
+        {% endif %}
+        <a href="{% url 'cart' %}" class="nav-icon cart-icon" title="Cart">
+          <i class="fas fa-shopping-bag"></i>
+          {% if cart_count > 0 %}<span class="cart-badge">{{ cart_count }}</span>{% endif %}
+        </a>
+        <button class="hamburger" id="hamburger">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-inner">
+      <button class="mobile-close" id="mobileClose"><i class="fas fa-times"></i></button>
+      <a href="{% url 'home' %}" class="mobile-nav-link">Home</a>
+      <a href="{% url 'shop' %}" class="mobile-nav-link">All Products</a>
+      <a href="{% url 'shop' %}?category=men" class="mobile-nav-link">Men</a>
+      <a href="{% url 'shop' %}?category=women" class="mobile-nav-link">Women</a>
+      <a href="{% url 'shop' %}?category=accessories" class="mobile-nav-link">Accessories</a>
+      <a href="{% url 'cart' %}" class="mobile-nav-link">Cart ({{ cart_count }})</a>
+      <a href="{% url 'about' %}" class="mobile-nav-link">About Us</a>
+      <a href="{% url 'contact' %}" class="mobile-nav-link">Contact</a>
+      {% if user.is_authenticated %}
+      <a href="{% url 'profile' %}" class="mobile-nav-link">Profile</a>
+      <a href="{% url 'logout' %}" class="mobile-nav-link">Logout</a>
+      {% else %}
+      <a href="{% url 'login' %}" class="mobile-nav-link">Login</a>
+      <a href="{% url 'register' %}" class="mobile-nav-link">Register</a>
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- Messages -->
+  {% if messages %}
+  <div class="messages-container">
+    {% for message in messages %}
+    <div class="message message-{{ message.tags }}">
+      {{ message }}
+      <button class="msg-close" onclick="this.parentElement.remove()"><i class="fas fa-times"></i></button>
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <!-- Main Content -->
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="{% static 'store/images/logo4.png' %}" alt="Zavi Luxe" class="footer-logo">
+        <h3>ZAVI LUXE</h3>
+        <p>Elevating everyday fashion with timeless elegance and modern luxury.</p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-x-twitter"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h4>Shop</h4>
+        <a href="{% url 'shop' %}?category=men">Men's Collection</a>
+        <a href="{% url 'shop' %}?category=women">Women's Collection</a>
+        <a href="{% url 'shop' %}?category=accessories">Accessories</a>
+        <a href="{% url 'shop' %}">New Arrivals</a>
+      </div>
+      <div class="footer-links">
+        <h4>Account</h4>
+        <a href="{% url 'profile' %}">My Profile</a>
+        <a href="{% url 'orders' %}">My Orders</a>
+        <a href="{% url 'wishlist' %}">Wishlist</a>
+        <a href="{% url 'cart' %}">Cart</a>
+      </div>
+      <div class="footer-links">
+        <h4>Help</h4>
+        <a href="{% url 'size_guide' %}">Size Guide</a>
+        <a href="{% url 'shipping' %}">Shipping Policy</a>
+        <a href="{% url 'returns_exchange' %}">Returns &amp; Exchange</a>
+        <a href="{% url 'contact' %}">Contact Us</a>
+        <a href="{% url 'about' %}">About Us</a>
+      </div>
+      <div class="footer-newsletter">
+        <h4>Stay in the Loop</h4>
+        <p>Subscribe to receive exclusive offers and new arrivals.</p>
+        <form id="newsletterForm" class="newsletter-form">
+          {% csrf_token %}
+          <input type="email" id="newsletterEmail" placeholder="Your email address" class="newsletter-input" required>
+          <button type="submit" class="newsletter-btn">Subscribe</button>
+        </form>
+        <div id="newsletterMessage" style="margin-top: 8px; font-size: 0.9em; transition: opacity 0.3s;"></div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Zavi Luxe. All rights reserved.</p>
+      <div class="payment-icons" style="display: flex; align-items: center; gap: 10px;">
+        <i class="fab fa-cc-visa"></i>
+        <i class="fab fa-cc-mastercard"></i>
+        <i class="fab fa-google-pay"></i>
+        <span style="font-family: sans-serif; font-weight: 800; font-style: italic; font-size: 0.9em; line-height: 1; letter-spacing: 0.5px;">UPI</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="{% static 'store/js/main.js' %}"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const newsletterForm = document.getElementById('newsletterForm');
+      const newsletterEmail = document.getElementById('newsletterEmail');
+      const newsletterMessage = document.getElementById('newsletterMessage');
+
+      if (newsletterForm) {
+        newsletterForm.addEventListener('submit', function (e) {
+          e.preventDefault();
+          const email = newsletterEmail.value.trim();
+          if (!email) return;
+
+          fetch("{% url 'subscribe' %}", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "X-CSRFToken": document.querySelector('[name=csrfmiddlewaretoken]').value
+            },
+            body: JSON.stringify({ email: email })
+          })
+          .then(response => response.json())
+          .then(data => {
+            newsletterMessage.style.display = 'block';
+            newsletterMessage.style.opacity = '1';
+            newsletterMessage.innerText = data.message;
+            if (data.status === 'success') {
+              newsletterMessage.style.color = '#28a745'; // Green
+              newsletterEmail.value = ''; // clear input
+            } else if (data.status === 'info') {
+              newsletterMessage.style.color = '#17a2b8'; // Blue
+            } else {
+              newsletterMessage.style.color = '#dc3545'; // Red
+            }
+
+            // Auto fade out message
+            setTimeout(() => {
+              newsletterMessage.style.opacity = '0';
+              setTimeout(() => newsletterMessage.style.display = 'none', 300);
+            }, 4000);
+          })
+          .catch(error => {
+            newsletterMessage.style.display = 'block';
+            newsletterMessage.style.opacity = '1';
+            newsletterMessage.style.color = '#dc3545';
+            newsletterMessage.innerText = 'Network error. Please try again later.';
+            setTimeout(() => {
+              newsletterMessage.style.opacity = '0';
+              setTimeout(() => newsletterMessage.style.display = 'none', 300);
+            }, 4000);
+          });
+        });
+      }
+    });
+  </script>
+  {% block extra_js %}{% endblock %}
+</body>
+
+</html>

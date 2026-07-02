@@ -1,0 +1,43 @@
+/* ============================================
+   ZAVI LUXE — Checkout Page Styles
+   ============================================ */
+
+.checkout-page { padding-top: 106px; }
+
+.checkout-grid {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 0;
+  min-height: calc(100vh - 106px);
+}
+
+.checkout-form-section    { padding: 60px; }
+.checkout-summary-section {
+  background: var(--dark);
+  padding: 60px 40px;
+  border-left: 1px solid var(--border);
+}
+
+.checkout-step-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 300;
+  color: var(--white);
+  margin-bottom: 32px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.payment-options { display: flex; flex-direction: column; gap: 12px; }
+.payment-option {
+  border: 1px solid var(--border);
+  padding: 16px 20px;
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.payment-option:hover { border-color: var(--gold); }
+.payment-option input[type="radio"] { accent-color: var(--gold); }
+.payment-option label { cursor: pointer; font-size: 14px; }

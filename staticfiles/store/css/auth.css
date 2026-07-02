@@ -1,0 +1,41 @@
+/* ============================================
+   ZAVI LUXE — Auth Pages (Login / Register / OTP)
+   ============================================ */
+
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--deep);
+  padding-top: 106px;
+}
+
+.auth-card {
+  background: var(--dark);
+  border: 1px solid var(--border);
+  padding: 56px 48px;
+  width: 100%;
+  max-width: 480px;
+}
+
+.auth-logo { text-align: center; margin-bottom: 32px; }
+.auth-logo img { width: 70px; margin: 0 auto 12px; }
+.auth-logo h2 {
+  font-family: 'Cinzel', serif;
+  font-size: 18px;
+  color: var(--gold);
+  letter-spacing: 4px;
+}
+
+.auth-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 30px;
+  font-weight: 300;
+  color: var(--white);
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.auth-link { text-align: center; margin-top: 20px; font-size: 13px; color: var(--text-dim); }
+.auth-link a { color: var(--gold); }

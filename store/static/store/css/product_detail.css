@@ -1,0 +1,156 @@
+/* ============================================
+   ZAVI LUXE — Product Detail Page Styles
+   ============================================ */
+
+.product-detail { padding-top: 106px; }
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: calc(100vh - 106px);
+}
+
+.detail-images {
+  background: var(--dark);
+  position: sticky;
+  top: 106px;
+  height: calc(100vh - 106px);
+  overflow: hidden;
+}
+.detail-main-image { width: 100%; height: 100%; object-fit: cover; }
+
+.detail-info { padding: 60px; background: var(--black); }
+
+.detail-category {
+  font-size: 10px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+.detail-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 42px;
+  font-weight: 300;
+  color: var(--white);
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+
+.detail-price-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+.detail-price    { font-size: 28px; color: var(--gold); font-weight: 400; }
+.detail-original { font-size: 18px; color: var(--text-dim); text-decoration: line-through; }
+.detail-discount { background: #c0392b; color: white; font-size: 11px; padding: 3px 10px; font-weight: 500; }
+
+/* Size Selector */
+.size-selector { margin-bottom: 28px; }
+.size-label {
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-mid);
+  margin-bottom: 12px;
+  display: block;
+}
+.size-options { display: flex; gap: 8px; flex-wrap: wrap; }
+.size-btn {
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--border);
+  color: var(--text-mid);
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+  cursor: pointer;
+}
+.size-btn:hover, .size-btn.active {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: rgba(201,169,110,0.1);
+}
+
+/* Quantity */
+.quantity-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+.qty-label  { font-size: 11px; letter-spacing: 2px; color: var(--text-mid); text-transform: uppercase; }
+.qty-control { display: flex; align-items: center; border: 1px solid var(--border); }
+.qty-btn {
+  width: 40px; height: 40px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-mid);
+  transition: var(--transition);
+  font-size: 18px;
+}
+.qty-btn:hover { color: var(--gold); }
+.qty-input {
+  width: 60px;
+  text-align: center;
+  background: transparent;
+  border: none;
+  border-left: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  color: var(--text);
+  font-size: 15px;
+  font-family: 'Jost', sans-serif;
+  padding: 8px 0;
+}
+
+.add-to-cart-row { display: flex; gap: 12px; margin-bottom: 32px; }
+
+/* Tabs */
+.detail-tabs { border-top: 1px solid var(--border); padding-top: 32px; }
+.tab-headers {
+  display: flex;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 24px;
+}
+.tab-btn {
+  padding: 12px 24px;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  transition: var(--transition);
+}
+.tab-btn.active { color: var(--gold); border-bottom-color: var(--gold); }
+.tab-content { display: none; font-size: 14px; line-height: 1.8; color: var(--text-mid); }
+.tab-content.active { display: block; }
+
+/* Reviews */
+.stars      { color: var(--gold); font-size: 14px; }
+.star-empty { color: var(--border); }
+
+.review-card { border-bottom: 1px solid var(--border); padding: 24px 0; }
+.review-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+.reviewer-avatar {
+  width: 40px; height: 40px;
+  background: var(--gold-dark);
+  color: var(--black);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Cinzel', serif;
+  font-size: 14px;
+  font-weight: 600;
+}
+.reviewer-name { font-weight: 400; font-size: 14px; }
+.review-date   { font-size: 11px; color: var(--text-dim); }
+.review-title  { font-weight: 400; margin-bottom: 6px; font-size: 15px; }
+.review-body   { font-size: 13px; color: var(--text-mid); line-height: 1.7; }

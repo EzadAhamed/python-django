@@ -1,0 +1,118 @@
+{% extends 'store/base.html' %}
+{% load static %}
+
+{% block title %}Shop — Zavi Luxe{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'store/css/shop.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="shop-header">
+  <div class="container">
+    <span class="section-eyebrow">Explore</span>
+    <h1 class="section-title">Our <em>Collection</em></h1>
+  </div>
+</div>
+
+<div class="shop-layout">
+  <!-- Sidebar Filters -->
+  <aside class="shop-sidebar">
+    <form method="GET" action="{% url 'shop' %}">
+      <div class="sidebar-section">
+        <p class="sidebar-title">Categories</p>
+        <label class="filter-option">
+          <input type="radio" name="category" value="" {% if not selected_category %}checked{% endif %}> All
+        </label>
+        {% for cat in categories %}
+        <label class="filter-option">
+          <input type="radio" name="category" value="{{ cat.slug }}" {% if selected_category == cat.slug %}checked{% endif %}> {{ cat.name }}
+        </label>
+        {% endfor %}
+      </div>
+
+      <div class="sidebar-section">
+        <p class="sidebar-title">Price Range</p>
+        <div class="price-inputs">
+          <input type="number" name="min_price" placeholder="Min ₹" class="price-input" value="{{ request.GET.min_price }}">
+          <input type="number" name="max_price" placeholder="Max ₹" class="price-input" value="{{ request.GET.max_price }}">
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <p class="sidebar-title">Sort By</p>
+        {% for value, label in sort_options|default:"" %}{% endfor %}
+        <label class="filter-option"><input type="radio" name="sort" value="newest" {% if sort == 'newest' or not sort %}checked{% endif %}> Newest First</label>
+        <label class="filter-option"><input type="radio" name="sort" value="price_asc" {% if sort == 'price_asc' %}checked{% endif %}> Price: Low to High</label>
+        <label class="filter-option"><input type="radio" name="sort" value="price_desc" {% if sort == 'price_desc' %}checked{% endif %}> Price: High to Low</label>
+        <label class="filter-option"><input type="radio" name="sort" value="name" {% if sort == 'name' %}checked{% endif %}> Name A–Z</label>
+      </div>
+
+      <button type="submit" class="btn btn-gold btn-full">Apply Filters</button>
+      <a href="{% url 'shop' %}" class="btn btn-dark btn-full" style="margin-top:10px;">Reset</a>
+    </form>
+  </aside>
+
+  <!-- Main Products -->
+  <div class="shop-main">
+    <div class="shop-toolbar">
+      <p class="results-count">{{ products|length }} product{% if products|length != 1 %}s{% endif %} found
+        {% if query %} for "<strong>{{ query }}</strong>"{% endif %}
+        {% if selected_category %} in <strong>{{ selected_category }}</strong>{% endif %}
+      </p>
+      <form method="GET" action="{% url 'shop' %}">
+        {% if selected_category %}<input type="hidden" name="category" value="{{ selected_category }}">{% endif %}
+        {% if query %}<input type="hidden" name="q" value="{{ query }}">{% endif %}
+        <select name="sort" class="sort-select" onchange="this.form.submit()">
+          <option value="newest" {% if sort == 'newest' %}selected{% endif %}>Newest</option>
+          <option value="price_asc" {% if sort == 'price_asc' %}selected{% endif %}>Price ↑</option>
+          <option value="price_desc" {% if sort == 'price_desc' %}selected{% endif %}>Price ↓</option>
+          <option value="name" {% if sort == 'name' %}selected{% endif %}>Name A–Z</option>
+        </select>
+      </form>
+    </div>
+
+    {% if products %}
+    <div class="product-grid">
+      {% for product in products %}
+      <div class="product-card">
+        <a href="{{ product.get_absolute_url }}">
+          <div class="product-image-wrap">
+            {% if product.image %}
+              <img src="{{ product.image.url }}" alt="{{ product.name }}" loading="lazy">
+            {% else %}
+              <div style="width:100%;height:100%;background:linear-gradient(135deg,#1c1c1c,#2c2c2c);display:flex;align-items:center;justify-content:center;">
+                <i class="fas fa-tshirt" style="font-size:52px;color:var(--muted);"></i>
+              </div>
+            {% endif %}
+            {% if product.is_new_arrival %}<span class="product-badge badge-new">New</span>{% endif %}
+            {% if product.get_discount_percent > 0 %}<span class="product-badge badge-sale" style="top:44px;">-{{ product.get_discount_percent }}%</span>{% endif %}
+          </div>
+        </a>
+        <div class="product-actions">
+          <a href="{% url 'toggle_wishlist' product.id %}" class="product-action-btn" title="Wishlist"><i class="fas fa-heart"></i></a>
+          <a href="{{ product.get_absolute_url }}" class="product-action-btn" title="View"><i class="fas fa-eye"></i></a>
+        </div>
+        <div class="product-info">
+          <p class="product-category">{{ product.category.name }}</p>
+          <h3 class="product-name"><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></h3>
+          <div class="product-price">
+            <span class="price-current">₹{{ product.price }}</span>
+            {% if product.original_price %}<span class="price-original">₹{{ product.original_price }}</span>{% endif %}
+            {% if product.get_discount_percent > 0 %}<span class="price-discount">{{ product.get_discount_percent }}% off</span>{% endif %}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="empty-state">
+      <div class="empty-icon"><i class="fas fa-search"></i></div>
+      <h3 class="empty-title">No Products Found</h3>
+      <p class="empty-text">Try adjusting your filters or search terms.</p>
+      <a href="{% url 'shop' %}" class="btn btn-gold">Browse All</a>
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

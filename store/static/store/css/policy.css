@@ -1,0 +1,583 @@
+/* ============================================
+   ZAVI LUXE — Policy Pages Shared Styles
+   (Returns & Exchange, Shipping, Size Guide)
+   ============================================ */
+
+/* Policy Hero */
+.policy-hero {
+  padding: 140px 40px 80px;
+  text-align: center;
+  background: radial-gradient(ellipse at 50% 70%, rgba(201,169,110,0.08) 0%, transparent 65%),
+              var(--deep);
+  border-bottom: 1px solid var(--border);
+}
+
+.policy-hero .section-title { margin: 12px 0 16px; }
+
+.policy-hero-sub {
+  color: var(--text-dim);
+  font-size: 15px;
+  line-height: 1.8;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* Summary Cards */
+.policy-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+}
+
+.policy-summary-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 36px 24px;
+  text-align: center;
+  transition: var(--transition);
+}
+.policy-summary-card:hover {
+  border-color: var(--gold);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 32px rgba(201,169,110,0.1);
+}
+
+.policy-summary-icon {
+  width: 56px;
+  height: 56px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: var(--gold);
+  margin: 0 auto 20px;
+  transition: var(--transition);
+}
+.policy-summary-card:hover .policy-summary-icon {
+  background: var(--gold);
+  color: var(--black);
+  border-color: var(--gold);
+}
+
+.policy-summary-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  color: var(--white);
+  mb-bottom: 10px;
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+
+.policy-summary-text {
+  font-size: 13px;
+  color: var(--text-dim);
+  line-height: 1.7;
+}
+
+/* Steps (Returns) */
+.policy-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.policy-step {
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+  padding: 36px 0;
+  border-bottom: 1px solid var(--border);
+}
+.policy-step:last-child { border-bottom: none; }
+
+.policy-step-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 48px;
+  font-weight: 300;
+  color: rgba(201,169,110,0.2);
+  line-height: 1;
+  flex-shrink: 0;
+  width: 64px;
+  text-align: right;
+  padding-top: 4px;
+}
+
+.policy-step-body { flex: 1; }
+
+.policy-step-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  color: var(--white);
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+
+.policy-step-text {
+  font-size: 14px;
+  color: var(--text-dim);
+  line-height: 1.8;
+}
+
+/* Policy Details */
+.policy-details-section { background: var(--deep); }
+
+.policy-details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+}
+
+.policy-details-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  color: var(--white);
+  font-weight: 400;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.policy-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.policy-list li {
+  font-size: 14px;
+  color: var(--text-dim);
+  padding-left: 20px;
+  position: relative;
+  line-height: 1.6;
+}
+.policy-list li::before {
+  content: '✦';
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+  font-size: 8px;
+  top: 4px;
+}
+
+.policy-list--no li::before { content: '✕'; color: #e55; font-size: 10px; top: 2px; }
+
+.policy-body-text {
+  font-size: 14px;
+  color: var(--text-dim);
+  line-height: 1.9;
+}
+.policy-body-text a { color: var(--gold); }
+
+/* Exchange Box */
+.policy-exchange-box {
+  display: flex;
+  gap: 36px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 48px 44px;
+  align-items: flex-start;
+}
+
+.policy-exchange-icon {
+  width: 64px;
+  height: 64px;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: var(--gold);
+  flex-shrink: 0;
+}
+
+.policy-exchange-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px;
+  color: var(--white);
+  font-weight: 400;
+  margin-bottom: 14px;
+}
+
+.policy-exchange-content p {
+  font-size: 14px;
+  color: var(--text-dim);
+  line-height: 1.9;
+}
+
+/* Refund Timeline */
+.refund-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.refund-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 20px 28px;
+  transition: var(--transition);
+}
+.refund-item:hover { border-color: var(--gold); }
+
+.refund-method { font-size: 14px; color: var(--text); }
+.refund-days   { font-size: 13px; color: var(--gold); letter-spacing: 1px; }
+
+/* Shipping Table */
+.shipping-table-wrap {
+  overflow-x: auto;
+}
+
+.shipping-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.shipping-table th {
+  background: var(--card);
+  color: var(--gold);
+  padding: 14px 20px;
+  text-align: left;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-family: 'Jost', sans-serif;
+  border-bottom: 2px solid var(--border);
+}
+
+.shipping-table td {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-dim);
+}
+
+.shipping-table tr:last-child td { border-bottom: none; }
+
+.shipping-table tr:hover td {
+  background: rgba(201,169,110,0.04);
+  color: var(--text);
+}
+
+.shipping-note {
+  font-size: 12px;
+  color: var(--text-dim);
+  margin-top: 16px;
+  font-style: italic;
+}
+
+/* Shipping Journey */
+.shipping-journey {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.journey-step {
+  text-align: center;
+  padding: 0 20px;
+  position: relative;
+}
+
+.journey-icon {
+  width: 64px;
+  height: 64px;
+  border: 2px solid var(--gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  color: var(--gold);
+  margin: 0 auto 20px;
+  background: var(--black);
+  position: relative;
+  z-index: 1;
+}
+
+.journey-line {
+  position: absolute;
+  top: 32px;
+  left: 50%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to right, var(--gold), var(--border));
+  z-index: 0;
+}
+
+.journey-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  color: var(--white);
+  margin-bottom: 10px;
+  font-weight: 400;
+}
+
+.journey-text {
+  font-size: 13px;
+  color: var(--text-dim);
+  line-height: 1.7;
+}
+
+/* Courier Partners */
+.courier-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+}
+
+.courier-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 32px 20px;
+  font-size: 13px;
+  color: var(--text-dim);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: var(--transition);
+}
+.courier-card i { font-size: 28px; color: var(--gold); }
+.courier-card:hover { border-color: var(--gold); color: var(--gold); }
+
+/* Policy CTA */
+.policy-cta-section {
+  background: var(--deep);
+  border-top: 1px solid var(--border);
+  padding: 80px 0;
+}
+
+.policy-cta-inner {
+  text-align: center;
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.policy-cta-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(26px, 3vw, 40px);
+  font-weight: 300;
+  color: var(--white);
+  margin-bottom: 14px;
+}
+
+.policy-cta-text {
+  font-size: 14px;
+  color: var(--text-dim);
+  line-height: 1.8;
+  margin-bottom: 32px;
+}
+
+/* ============================================
+   SIZE GUIDE SPECIFIC
+   ============================================ */
+
+.sizeguide-tips-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.sizeguide-tip {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 24px 20px;
+}
+
+.sizeguide-tip-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(201,169,110,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: var(--gold);
+  flex-shrink: 0;
+}
+
+.sizeguide-tip-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--white);
+  margin-bottom: 6px;
+  letter-spacing: 0.5px;
+}
+
+.sizeguide-tip-text {
+  font-size: 12px;
+  color: var(--text-dim);
+  line-height: 1.7;
+}
+
+/* Tabs */
+.size-tabs {
+  display: flex;
+  gap: 2px;
+  margin-bottom: 32px;
+  border-bottom: 2px solid var(--border);
+}
+
+.size-tab {
+  padding: 14px 28px;
+  font-family: 'Jost', sans-serif;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: var(--transition);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+}
+.size-tab:hover  { color: var(--text); }
+.size-tab.active { color: var(--gold); border-bottom-color: var(--gold); }
+
+.size-panel { display: none; }
+.size-panel.active { display: block; }
+
+.size-panel-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  color: var(--white);
+  font-weight: 300;
+  margin-bottom: 24px;
+}
+
+.size-table-wrap { overflow-x: auto; }
+
+.size-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  min-width: 600px;
+}
+
+.size-table th {
+  background: var(--card);
+  color: var(--gold);
+  padding: 14px 16px;
+  text-align: center;
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-family: 'Jost', sans-serif;
+  border-bottom: 2px solid var(--border);
+}
+
+.size-table td {
+  padding: 14px 16px;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-dim);
+  transition: background var(--transition);
+}
+
+.size-table tr:last-child td { border-bottom: none; }
+.size-table tr:hover td { background: rgba(201,169,110,0.04); color: var(--text); }
+
+.size-label {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+  color: var(--gold) !important;
+  font-weight: 500;
+}
+
+/* How to Measure */
+.sizeguide-how-section { background: var(--deep); }
+
+.measure-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+}
+
+.measure-card {
+  background: var(--black);
+  border: 1px solid var(--border);
+  padding: 36px 24px;
+  text-align: center;
+  transition: var(--transition);
+}
+.measure-card:hover { border-color: var(--gold); transform: translateY(-3px); }
+
+.measure-icon {
+  width: 56px;
+  height: 56px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: var(--gold);
+  margin: 0 auto 18px;
+  transition: var(--transition);
+}
+.measure-card:hover .measure-icon {
+  background: var(--gold);
+  color: var(--black);
+  border-color: var(--gold);
+}
+
+.measure-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  color: var(--white);
+  font-weight: 400;
+  margin-bottom: 12px;
+}
+
+.measure-text {
+  font-size: 13px;
+  color: var(--text-dim);
+  line-height: 1.7;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .policy-summary-grid  { grid-template-columns: repeat(2, 1fr); }
+  .policy-details-grid  { grid-template-columns: 1fr; gap: 40px; }
+  .shipping-journey     { grid-template-columns: 1fr 1fr; gap: 40px; }
+  .journey-line         { display: none; }
+  .courier-grid         { grid-template-columns: repeat(2, 1fr); }
+  .sizeguide-tips-grid  { grid-template-columns: repeat(2, 1fr); }
+  .measure-grid         { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .policy-hero          { padding: 120px 20px 60px; }
+  .policy-summary-grid  { grid-template-columns: 1fr; }
+  .policy-step          { flex-direction: column; gap: 12px; }
+  .policy-step-num      { text-align: left; width: auto; }
+  .policy-exchange-box  { flex-direction: column; gap: 20px; padding: 28px 24px; }
+  .shipping-journey     { grid-template-columns: 1fr; }
+  .courier-grid         { grid-template-columns: 1fr 1fr; }
+  .sizeguide-tips-grid  { grid-template-columns: 1fr; }
+  .measure-grid         { grid-template-columns: 1fr; }
+  .size-tabs            { flex-wrap: wrap; }
+}

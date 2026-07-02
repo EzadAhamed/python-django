@@ -1,0 +1,38 @@
+{% extends 'store/base.html' %}
+{% load static %}
+
+{% block title %}Verify OTP - Zavi Luxe{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'store/css/auth.css' %}">
+{% endblock %}
+
+{% block content %}
+<div style="min-height:70vh;display:flex;align-items:center;justify-content:center;padding:60px 20px;">
+  <div style="background:var(--card);max-width:400px;width:100%;padding:40px;border:1px solid var(--border);">
+    <div style="text-align:center;margin-bottom:30px;">
+      <i class="fas fa-envelope-open-text" style="font-size:32px;color:var(--gold);margin-bottom:20px;"></i>
+      <h2 style="font-family:'Cinzel',serif;font-size:24px;color:var(--gold);margin-bottom:12px;">Verification Required</h2>
+      <p style="color:var(--text-dim);font-size:14px;line-height:1.6;">
+        We sent an email containing a 6-digit verification code. Please enter the code below to securely login.
+      </p>
+    </div>
+
+    <form method="POST">
+      {% csrf_token %}
+      <div class="form-group" style="margin-bottom:24px;">
+        <label class="form-label" style="text-align:center;display:block;margin-bottom:12px;">Enter 6-Digit Code</label>
+        <input type="text" name="otp" class="form-input" style="text-align:center;letter-spacing:14px;font-size:24px;font-family:monospace;padding:16px;" required maxlength="6" pattern="\d{6}" placeholder="------">
+      </div>
+
+      <button type="submit" class="btn btn-gold btn-full" style="padding:16px;margin-top:16px;">
+        Verify & Continue &nbsp;<i class="fas fa-arrow-right"></i>
+      </button>
+    </form>
+    
+    <div style="text-align:center;margin-top:24px;">
+      <a href="{% url 'login' %}" style="color:var(--text-dim);font-size:13px;text-decoration:none;"><i class="fas fa-arrow-left" style="margin-right:6px;"></i> Cancel and return to Login</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

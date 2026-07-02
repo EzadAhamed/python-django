@@ -1,0 +1,180 @@
+{% extends 'store/base.html' %}
+{% load static %}
+
+{% block title %}Contact Us — Zavi Luxe{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'store/css/contact.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<!-- Page Header -->
+<div class="page-hero contact-hero">
+  <div class="container">
+    <span class="section-eyebrow">Get In Touch</span>
+    <h1 class="section-title">We'd Love to<br><em>Hear From You</em></h1>
+    <p class="contact-hero-sub">Questions, feedback, or simply want to say hello — we're here for you.</p>
+  </div>
+</div>
+
+<!-- Contact Grid -->
+<section class="section">
+  <div class="container">
+    <div class="contact-grid">
+
+      <!-- Contact Info -->
+      <div class="contact-info-col">
+        <h2 class="contact-info-title">Reach Us Directly</h2>
+        <div class="section-line" style="margin: 16px 0 28px;"></div>
+
+        <div class="contact-info-items">
+          <div class="contact-info-item">
+            <div class="contact-info-icon"><i class="fas fa-envelope"></i></div>
+            <div class="contact-info-text">
+              <p class="contact-info-label">Email</p>
+              <a href="mailto:zaviiiluxe@gmail.com" class="contact-info-value">zaviiiluxe@gmail.com</a>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-icon"><i class="fas fa-phone"></i></div>
+            <div class="contact-info-text">
+              <p class="contact-info-label">Phone</p>
+              <a href="tel:+918682878517" class="contact-info-value">+91 8682878517</a>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-icon"><i class="fas fa-clock"></i></div>
+            <div class="contact-info-text">
+              <p class="contact-info-label">Support Hours</p>
+              <p class="contact-info-value">Mon–Sat, 10:00 AM – 7:00 PM IST</p>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-icon"><i class="fas fa-map-marker-alt"></i></div>
+            <div class="contact-info-text">
+              <p class="contact-info-label">Studio Address</p>
+              <p class="contact-info-value">48 Sri Pal Nagar, Kulathupalayam<br>Coimbatore, Tamil Nadu 641042</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-social">
+          <p class="contact-social-label">Follow Us</p>
+          <div class="social-links">
+            <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="#" title="Twitter"><i class="fab fa-x-twitter"></i></a>
+            <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Form -->
+      <div class="contact-form-col">
+        <div class="contact-form-card">
+          <h2 class="contact-form-title">Send Us a Message</h2>
+          <p class="contact-form-sub">We typically respond within 24 hours on business days.</p>
+
+          {% if contact_success %}
+          <div class="contact-success">
+            <i class="fas fa-check-circle"></i>
+            <p>Thank you! Your message has been received. We'll get back to you shortly.</p>
+          </div>
+          {% else %}
+          <form method="POST" class="contact-form" action="">
+            {% csrf_token %}
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="contact-first-name">First Name</label>
+                <input type="text" id="contact-first-name" name="first_name" class="form-input" placeholder="Zara"
+                  required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="contact-last-name">Last Name</label>
+                <input type="text" id="contact-last-name" name="last_name" class="form-input" placeholder="Vidal"
+                  required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="contact-email">Email Address</label>
+              <input type="email" id="contact-email" name="email" class="form-input" placeholder="you@example.com"
+                required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="contact-subject">Subject</label>
+              <select id="contact-subject" name="subject" class="form-select">
+                <option value="">Select a topic...</option>
+                <option value="order">Order Enquiry</option>
+                <option value="return">Returns & Exchanges</option>
+                <option value="product">Product Information</option>
+                <option value="shipping">Shipping Query</option>
+                <option value="feedback">General Feedback</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="contact-message">Message</label>
+              <textarea id="contact-message" name="message" class="form-textarea" rows="5"
+                placeholder="Tell us how we can help you..." style="min-height: 140px;" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-gold btn-full" id="contact-submit-btn">
+              <i class="fas fa-paper-plane"></i> Send Message
+            </button>
+          </form>
+          {% endif %}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FAQ Teaser -->
+<section class="contact-faq-section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">Quick Answers</span>
+      <h2 class="section-title">Frequently Asked <em>Questions</em></h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="faq-grid">
+      <div class="faq-item">
+        <div class="faq-q"><i class="fas fa-plus faq-icon"></i>How do I track my order?</div>
+        <div class="faq-a">Once your order is shipped, you will receive a tracking link via email. You can also view
+          your order status under My Orders in your account.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><i class="fas fa-plus faq-icon"></i>Can I modify my order after placing it?</div>
+        <div class="faq-a">Orders can be modified within 2 hours of placement. Please contact us immediately via email
+          or phone to request changes.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><i class="fas fa-plus faq-icon"></i>Do you offer international shipping?</div>
+        <div class="faq-a">Currently, we ship within India. International shipping is on our roadmap — subscribe to our
+          newsletter to be notified when it launches.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><i class="fas fa-plus faq-icon"></i>What is your return policy?</div>
+        <div class="faq-a">We offer a 7-day hassle-free return policy on all eligible items. Visit our <a
+            href="{% url 'returns_exchange' %}">Returns & Exchange</a> page for full details.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  // FAQ accordion
+  document.querySelectorAll('.faq-q').forEach(q => {
+    q.addEventListener('click', () => {
+      const item = q.parentElement;
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+</script>
+{% endblock %}

@@ -1,0 +1,191 @@
+{% extends 'store/base.html' %}
+{% load static %}
+{% block title %}My Orders — Zavi Luxe{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'store/css/profile.css' %}">
+<link rel="stylesheet" href="{% static 'store/css/orders.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="profile-page">
+  <div class="page-header">
+    <div class="container">
+      <span class="section-eyebrow">Account</span>
+      <h1 class="page-title">My <em style="font-style:italic;color:var(--gold);">Orders</em></h1>
+    </div>
+  </div>
+
+  <div class="container orders-container">
+    {% if orders %}
+    <div class="orders-list">
+      {% for order in orders %}
+      <div class="order-card">
+        <!-- Order Header -->
+        <div class="order-card-header">
+          <div>
+            <p class="order-num-label">Order Number</p>
+            <h3 class="order-num-value">{{ order.order_number }}</h3>
+          </div>
+          <div class="order-meta-right">
+            <p class="order-date">{{ order.created_at|date:"d M Y" }}</p>
+            <span class="status-badge status-{{ order.status }}">
+              {{ order.get_status_display }}
+            </span>
+            {% if order.status == 'delivered' and order.delivered_at %}
+            <p class="return-countdown">
+              <i class="fas fa-clock"></i>
+              {% with days=order.days_left_to_return %}
+                {% if days > 0 %}
+                  Return window: {{ days }} day{{ days|pluralize }} left
+                {% else %}
+                  Return window expired
+                {% endif %}
+              {% endwith %}
+            </p>
+            {% endif %}
+          </div>
+        </div>
+
+        <!-- Order Tracker -->
+        <div class="order-tracker">
+          <div class="tracker-line">
+            <div class="tracker-line-fill {% if order.status == 'delivered' %}progress-100{% elif order.status == 'shipped' %}progress-75{% elif order.status == 'confirmed' or order.status == 'processing' %}progress-25{% else %}progress-0{% endif %}"></div>
+          </div>
+
+          <!-- Step 1: Confirmed -->
+          <div class="tracker-step {% if order.status != 'pending' and order.status != 'cancelled' %}completed{% elif order.status == 'pending' %}active{% endif %}">
+            <div class="tracker-dot"><i class="fas fa-check"></i></div>
+            <div class="tracker-label">Order Confirmed</div>
+            <div class="tracker-date">
+              {% if order.confirmed_at %}{{ order.confirmed_at|date:"D M d" }}{% else %}{{ order.created_at|date:"D M d" }}{% endif %}
+            </div>
+          </div>
+
+          <!-- Step 2: Shipped -->
+          <div class="tracker-step {% if order.status == 'shipped' or order.status == 'delivered' or order.status == 'return_requested' or order.status == 'returned' %}completed{% elif order.status == 'confirmed' or order.status == 'processing' %}active{% endif %}">
+            <div class="tracker-dot"><i class="fas fa-check"></i></div>
+            <div class="tracker-label">Shipped</div>
+            <div class="tracker-date">
+              {% if order.shipped_at %}{{ order.shipped_at|date:"D M d" }}{% elif order.status == 'shipped' or order.status == 'delivered' %}In Transit{% else %}Pending{% endif %}
+            </div>
+          </div>
+
+          <!-- Step 3: Delivery -->
+          <div class="tracker-step {% if order.status == 'delivered' or order.status == 'return_requested' or order.status == 'returned' %}completed{% elif order.status == 'shipped' %}active{% endif %}">
+            <div class="tracker-dot"><i class="fas fa-check"></i></div>
+            <div class="tracker-label">Delivery</div>
+            <div class="tracker-date">
+              {% if order.delivered_at %}{{ order.delivered_at|date:"D M d" }}{% else %}Est. {{ order.estimated_delivery|date:"M d" }}{% endif %}
+            </div>
+          </div>
+        </div>
+
+        <!-- Order Items -->
+        <div class="order-items-wrapper">
+          {% for item in order.items.all %}
+          <div class="order-item-row">
+            <span>{{ item.product_name }} <span style="color:var(--text-dim);font-size:12px;">({{ item.size }}) &times; {{ item.quantity }}</span></span>
+            <span class="order-item-price">&#8377;{{ item.get_subtotal }}</span>
+          </div>
+          {% endfor %}
+          <div class="order-footer">
+            <span class="payment-method">Payment: {{ order.payment_method }}</span>
+            <span class="order-grand-total">&#8377;{{ order.total_amount }}</span>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="order-actions">
+          {% if order.can_cancel %}
+            <button class="btn-cancel"
+                    data-order="{{ order.order_number }}"
+                    data-url="{% url 'cancel_order' order.order_number %}"
+                    onclick="openModal('cancel', this)">
+              <i class="fas fa-times-circle"></i> Cancel Order
+            </button>
+          {% endif %}
+
+          {% if order.can_return %}
+            <button class="btn-return"
+                    data-order="{{ order.order_number }}"
+                    data-url="{% url 'request_return' order.order_number %}"
+                    onclick="openModal('return', this)">
+              <i class="fas fa-undo-alt"></i> Request Return
+            </button>
+          {% endif %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="empty-state">
+      <div class="empty-icon"><i class="fas fa-box-open"></i></div>
+      <h2 class="empty-title">No Orders Yet</h2>
+      <p class="empty-text">You haven't placed any orders. Start shopping!</p>
+      <a href="{% url 'shop' %}" class="btn btn-gold">Browse Collection</a>
+    </div>
+    {% endif %}
+  </div>
+</div>
+
+<!-- Confirmation Modal -->
+<div class="modal-overlay" id="confirmModal">
+  <div class="modal-box">
+    <div class="modal-icon" id="modalIcon"></div>
+    <h2 class="modal-title" id="modalTitle"></h2>
+    <p class="modal-text" id="modalText"></p>
+    <div class="modal-btns">
+      <button class="btn btn-dark btn-sm" onclick="closeModal()">Go Back</button>
+      <form id="modalForm" method="POST" style="display:inline;">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-gold btn-sm" id="modalConfirmBtn">Confirm</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  function openModal(type, element) {
+    const orderNumber = element.getAttribute('data-order');
+    const actionUrl = element.getAttribute('data-url');
+    
+    const modal = document.getElementById('confirmModal');
+    const modalForm = document.getElementById('modalForm');
+    const modalIcon = document.getElementById('modalIcon');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalText = document.getElementById('modalText');
+    const modalConfirmBtn = document.getElementById('modalConfirmBtn');
+
+    modalForm.action = actionUrl;
+
+    if (type === 'cancel') {
+      modalIcon.innerHTML = '<i class="fas fa-times-circle" style="color:#c0392b;"></i>';
+      modalTitle.textContent  = 'Cancel Order?';
+      modalText.textContent   = 'Are you sure you want to cancel order #' + orderNumber + '? This action cannot be undone.';
+      modalConfirmBtn.className = 'btn btn-sm';
+      modalConfirmBtn.style.background = '#c0392b';
+      modalConfirmBtn.style.color      = '#fff';
+    } else {
+      modalIcon.innerHTML = '<i class="fas fa-undo-alt" style="color:var(--gold);"></i>';
+      modalTitle.textContent  = 'Request Return?';
+      modalText.textContent   = 'Submit a return request for order #' + orderNumber + '? Our team will contact you within 24 hours to arrange pickup.';
+      modalConfirmBtn.className = 'btn btn-gold btn-sm';
+      modalConfirmBtn.style.background = '';
+      modalConfirmBtn.style.color      = '';
+    }
+    modal.classList.add('active');
+  }
+
+  function closeModal() {
+    document.getElementById('confirmModal').classList.remove('active');
+  }
+
+  // Close on overlay click
+  document.getElementById('confirmModal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
+</script>
+{% endblock %}

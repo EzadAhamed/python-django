@@ -1,0 +1,248 @@
+{% extends 'store/base.html' %}
+{% load static %}
+
+{% block title %}Size Guide — Zavi Luxe{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'store/css/policy.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<!-- Page Header -->
+<div class="policy-hero">
+  <div class="container">
+    <span class="section-eyebrow">Find Your Perfect Fit</span>
+    <h1 class="section-title">Size <em>Guide</em></h1>
+    <p class="policy-hero-sub">Use our comprehensive size guide to find the perfect fit for every style and occasion.</p>
+  </div>
+</div>
+
+<!-- Measuring Tips -->
+<section class="section-sm">
+  <div class="container">
+    <div class="sizeguide-tips-grid">
+      <div class="sizeguide-tip">
+        <div class="sizeguide-tip-icon"><i class="fas fa-ruler-horizontal"></i></div>
+        <div>
+          <h4 class="sizeguide-tip-title">Use a Measuring Tape</h4>
+          <p class="sizeguide-tip-text">Always use a soft measuring tape, not a metal ruler. Hold it snugly but not tight.</p>
+        </div>
+      </div>
+      <div class="sizeguide-tip">
+        <div class="sizeguide-tip-icon"><i class="fas fa-tshirt"></i></div>
+        <div>
+          <h4 class="sizeguide-tip-title">Measure Over Underwear</h4>
+          <p class="sizeguide-tip-text">Take measurements over light undergarments for accuracy. Avoid measuring over thick clothing.</p>
+        </div>
+      </div>
+      <div class="sizeguide-tip">
+        <div class="sizeguide-tip-icon"><i class="fas fa-user"></i></div>
+        <div>
+          <h4 class="sizeguide-tip-title">Stand Naturally</h4>
+          <p class="sizeguide-tip-text">Stand straight and relaxed — no sucking in! Natural posture gives the most accurate measurements.</p>
+        </div>
+      </div>
+      <div class="sizeguide-tip">
+        <div class="sizeguide-tip-icon"><i class="fas fa-sync-alt"></i></div>
+        <div>
+          <h4 class="sizeguide-tip-title">Measure More Than Once</h4>
+          <p class="sizeguide-tip-text">Take each measurement twice for accuracy. If between sizes, size up for a more comfortable fit.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Size Category Tabs -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">All Categories</span>
+      <h2 class="section-title">Size <em>Charts</em></h2>
+      <div class="section-line"></div>
+    </div>
+
+    <!-- Tab Navigation -->
+    <div class="size-tabs" id="sizeTabs">
+      <button class="size-tab active" data-tab="women" id="tab-women">Women</button>
+      <button class="size-tab" data-tab="men" id="tab-men">Men</button>
+      <button class="size-tab" data-tab="kids" id="tab-kids">Kids</button>
+      <button class="size-tab" data-tab="footwear" id="tab-footwear">Footwear</button>
+    </div>
+
+    <!-- Women's Sizes -->
+    <div class="size-panel active" id="panel-women">
+      <h3 class="size-panel-title">Women's Clothing (in cm)</h3>
+      <div class="size-table-wrap">
+        <table class="size-table">
+          <thead>
+            <tr>
+              <th>Size</th>
+              <th>Chest</th>
+              <th>Waist</th>
+              <th>Hips</th>
+              <th>UK Size</th>
+              <th>US Size</th>
+              <th>EU Size</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="size-label">XS</td><td>78–80</td><td>60–62</td><td>84–86</td><td>6</td><td>2</td><td>32</td></tr>
+            <tr><td class="size-label">S</td><td>82–84</td><td>64–66</td><td>88–90</td><td>8</td><td>4</td><td>34</td></tr>
+            <tr><td class="size-label">M</td><td>86–88</td><td>68–70</td><td>92–94</td><td>10</td><td>6</td><td>36</td></tr>
+            <tr><td class="size-label">L</td><td>90–92</td><td>72–74</td><td>96–98</td><td>12</td><td>8</td><td>38</td></tr>
+            <tr><td class="size-label">XL</td><td>94–96</td><td>76–78</td><td>100–102</td><td>14</td><td>10</td><td>40</td></tr>
+            <tr><td class="size-label">XXL</td><td>98–100</td><td>80–82</td><td>104–106</td><td>16</td><td>12</td><td>42</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Men's Sizes -->
+    <div class="size-panel" id="panel-men">
+      <h3 class="size-panel-title">Men's Clothing (in cm)</h3>
+      <div class="size-table-wrap">
+        <table class="size-table">
+          <thead>
+            <tr>
+              <th>Size</th>
+              <th>Chest</th>
+              <th>Waist</th>
+              <th>Shoulder</th>
+              <th>UK Size</th>
+              <th>US Size</th>
+              <th>EU Size</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="size-label">XS</td><td>84–86</td><td>72–74</td><td>41–42</td><td>32</td><td>32</td><td>42</td></tr>
+            <tr><td class="size-label">S</td><td>88–90</td><td>76–78</td><td>43–44</td><td>34</td><td>34</td><td>44</td></tr>
+            <tr><td class="size-label">M</td><td>92–94</td><td>80–82</td><td>45–46</td><td>36</td><td>36</td><td>46</td></tr>
+            <tr><td class="size-label">L</td><td>96–98</td><td>84–86</td><td>47–48</td><td>38</td><td>38</td><td>48</td></tr>
+            <tr><td class="size-label">XL</td><td>100–102</td><td>88–90</td><td>49–50</td><td>40</td><td>40</td><td>50</td></tr>
+            <tr><td class="size-label">XXL</td><td>104–106</td><td>92–94</td><td>51–52</td><td>42</td><td>42</td><td>52</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Kids Sizes -->
+    <div class="size-panel" id="panel-kids">
+      <h3 class="size-panel-title">Kids' Clothing (in cm)</h3>
+      <div class="size-table-wrap">
+        <table class="size-table">
+          <thead>
+            <tr>
+              <th>Age</th>
+              <th>Height</th>
+              <th>Chest</th>
+              <th>Waist</th>
+              <th>UK Size</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="size-label">2–3 yrs</td><td>92–98</td><td>52–55</td><td>50–53</td><td>2–3Y</td></tr>
+            <tr><td class="size-label">4–5 yrs</td><td>104–110</td><td>56–59</td><td>54–56</td><td>4–5Y</td></tr>
+            <tr><td class="size-label">6–7 yrs</td><td>116–122</td><td>60–63</td><td>57–59</td><td>6–7Y</td></tr>
+            <tr><td class="size-label">8–9 yrs</td><td>128–134</td><td>64–67</td><td>60–62</td><td>8–9Y</td></tr>
+            <tr><td class="size-label">10–11 yrs</td><td>140–146</td><td>68–71</td><td>63–65</td><td>10–11Y</td></tr>
+            <tr><td class="size-label">12–13 yrs</td><td>152–158</td><td>72–76</td><td>66–68</td><td>12–13Y</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Footwear -->
+    <div class="size-panel" id="panel-footwear">
+      <h3 class="size-panel-title">Footwear Size Conversion</h3>
+      <div class="size-table-wrap">
+        <table class="size-table">
+          <thead>
+            <tr>
+              <th>India (IN)</th>
+              <th>UK</th>
+              <th>US (Women)</th>
+              <th>US (Men)</th>
+              <th>EU</th>
+              <th>Foot Length (cm)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="size-label">4</td><td>3</td><td>5.5</td><td>4</td><td>36</td><td>22.5</td></tr>
+            <tr><td class="size-label">5</td><td>4</td><td>6.5</td><td>5</td><td>37</td><td>23.5</td></tr>
+            <tr><td class="size-label">6</td><td>5</td><td>7.5</td><td>6</td><td>38</td><td>24.0</td></tr>
+            <tr><td class="size-label">7</td><td>6</td><td>8.5</td><td>7</td><td>39</td><td>24.5</td></tr>
+            <tr><td class="size-label">8</td><td>7</td><td>9.5</td><td>8</td><td>40</td><td>25.5</td></tr>
+            <tr><td class="size-label">9</td><td>8</td><td>10.5</td><td>9</td><td>41</td><td>26.0</td></tr>
+            <tr><td class="size-label">10</td><td>9</td><td>11.5</td><td>10</td><td>42</td><td>27.0</td></tr>
+            <tr><td class="size-label">11</td><td>10</td><td>12.5</td><td>11</td><td>43</td><td>27.5</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- How to Measure -->
+<section class="section sizeguide-how-section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">Step by Step</span>
+      <h2 class="section-title">How to <em>Measure</em></h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="measure-grid">
+      <div class="measure-card">
+        <div class="measure-icon"><i class="fas fa-arrows-alt-h"></i></div>
+        <h4 class="measure-title">Chest / Bust</h4>
+        <p class="measure-text">Measure around the fullest part of your chest/bust, keeping the tape parallel to the floor. Keep arms relaxed at your sides.</p>
+      </div>
+      <div class="measure-card">
+        <div class="measure-icon"><i class="fas fa-circle-notch"></i></div>
+        <h4 class="measure-title">Waist</h4>
+        <p class="measure-text">Measure around your natural waistline — the narrowest part of your torso, typically above your belly button.</p>
+      </div>
+      <div class="measure-card">
+        <div class="measure-icon"><i class="fas fa-arrows-alt-v"></i></div>
+        <h4 class="measure-title">Hips</h4>
+        <p class="measure-text">Stand with feet together and measure around the fullest part of your hips, approximately 20 cm below your natural waist.</p>
+      </div>
+      <div class="measure-card">
+        <div class="measure-icon"><i class="fas fa-ruler-vertical"></i></div>
+        <h4 class="measure-title">Inseam</h4>
+        <p class="measure-text">Measure from the crotch seam to the bottom of the leg along the inner seam. Best done with a pair of well-fitting trousers.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Help Note -->
+<section class="policy-cta-section">
+  <div class="container">
+    <div class="policy-cta-inner">
+      <h2 class="policy-cta-title">Still unsure about your size?</h2>
+      <p class="policy-cta-text">Our style advisors are happy to help you find the perfect fit. Reach out and we'll guide you.</p>
+      <a href="{% url 'contact' %}" class="btn btn-gold">Ask Our Stylists</a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  const tabs = document.querySelectorAll('.size-tab');
+  const panels = document.querySelectorAll('.size-panel');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      panels.forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+    });
+  });
+</script>
+{% endblock %}

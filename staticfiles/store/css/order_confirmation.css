@@ -1,0 +1,40 @@
+/* ============================================
+   ZAVI LUXE — Order Confirmation Page Styles
+   ============================================ */
+
+.confirmation-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--deep);
+  padding: 120px 20px;
+}
+
+.confirmation-card {
+  text-align: center;
+  max-width: 560px;
+  background: var(--dark);
+  border: 1px solid var(--border);
+  padding: 60px 48px;
+}
+
+.confirmation-icon  { font-size: 60px; color: var(--gold); margin-bottom: 24px; }
+.confirmation-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 40px;
+  font-weight: 300;
+  color: var(--white);
+  margin-bottom: 12px;
+}
+
+.order-number-badge {
+  display: inline-block;
+  background: rgba(201,169,110,0.15);
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  padding: 8px 24px;
+  font-size: 13px;
+  letter-spacing: 2px;
+  margin: 16px 0 24px;
+}

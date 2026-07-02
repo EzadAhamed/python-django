@@ -1,0 +1,110 @@
+{% extends 'store/base.html' %}
+{% load static %}
+
+{% block title %}Cart — Zavi Luxe{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'store/css/cart.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="cart-page">
+  <div class="page-header">
+    <div class="container">
+      <span class="section-eyebrow">Your Bag</span>
+      <h1 class="page-title">Shopping <em style="font-style:italic;color:var(--gold);">Cart</em></h1>
+    </div>
+  </div>
+
+  <div class="container" style="padding-top:0;">
+    {% if items %}
+    <div class="cart-layout">
+      <!-- Items -->
+      <div class="cart-items-section">
+        {% for item in items %}
+        <div class="cart-item">
+          {% if item.product.image %}
+            <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="cart-item-img">
+          {% else %}
+            <div class="cart-item-img" style="background:var(--dark);display:flex;align-items:center;justify-content:center;">
+              <i class="fas fa-tshirt" style="font-size:28px;color:var(--muted);"></i>
+            </div>
+          {% endif %}
+          <div>
+            <p class="cart-item-name">{{ item.product.name }}</p>
+            <p class="cart-item-meta">Size: {{ item.size }} &nbsp;|&nbsp; {{ item.product.category.name }}</p>
+            <div class="cart-item-price">₹{{ item.product.price }}</div>
+            <form method="POST" action="{% url 'update_cart' item.id %}" style="display:flex;align-items:center;gap:10px;margin-top:12px;">
+              {% csrf_token %}
+              <div class="qty-control" style="border:1px solid var(--border);">
+                <button type="button" class="qty-btn" onclick="(function(btn){var i=btn.nextElementSibling;if(parseInt(i.value)>1)i.value=parseInt(i.value)-1;})(this)">−</button>
+                <input type="number" name="quantity" value="{{ item.quantity }}" min="1" max="99" class="qty-input" style="width:50px;">
+                <button type="button" class="qty-btn" onclick="(function(btn){var i=btn.previousElementSibling;i.value=parseInt(i.value)+1;})(this)">+</button>
+              </div>
+              <button type="submit" class="btn btn-dark btn-sm">Update</button>
+            </form>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--gold);margin-bottom:8px;">₹{{ item.get_subtotal }}</div>
+            <a href="{% url 'remove_from_cart' item.id %}" style="font-size:11px;color:var(--text-dim);letter-spacing:1px;text-transform:uppercase;" onclick="return confirm('Remove this item?')">
+              <i class="fas fa-trash-alt"></i> Remove
+            </a>
+          </div>
+        </div>
+        {% endfor %}
+
+        <div style="padding-top:24px;">
+          <a href="{% url 'shop' %}" class="btn btn-dark"><i class="fas fa-arrow-left"></i> Continue Shopping</a>
+        </div>
+      </div>
+
+      <!-- Summary -->
+      <div class="cart-summary-section">
+        <h3 style="font-family:'Cinzel',serif;font-size:14px;letter-spacing:3px;color:var(--gold);margin-bottom:24px;">Order Summary</h3>
+
+        <div class="summary-row">
+          <span>Subtotal ({{ cart.get_item_count }} item{% if cart.get_item_count != 1 %}s{% endif %})</span>
+          <span>₹{{ cart.get_total }}</span>
+        </div>
+        <div class="summary-row">
+          <span>Shipping</span>
+          <span style="color:var(--gold);">{% if cart.get_total >= 2999 %}Free{% else %}₹99{% endif %}</span>
+        </div>
+        <div class="summary-row" style="border-bottom:none;padding-top:20px;">
+          <span class="summary-total">Total</span>
+          <span class="summary-total-val">₹{% if cart.get_total >= 2999 %}{{ cart.get_total }}{% else %}{{ cart.get_total|add:99 }}{% endif %}</span>
+        </div>
+
+        {% if cart.get_total < 2999 %}
+        <p style="font-size:12px;color:var(--text-dim);margin-top:12px;padding:10px;background:rgba(201,169,110,0.08);border:1px solid var(--gold);border-radius:2px;">
+          Add ₹{{ 2999|add:"-"|add:"0" }} more for free shipping!
+        </p>
+        {% endif %}
+
+        <a href="{% url 'checkout' %}" class="btn btn-gold btn-full" style="margin-top:24px;">
+          Proceed to Checkout <i class="fas fa-arrow-right"></i>
+        </a>
+
+        <div style="margin-top:20px;text-align:center;">
+          <p style="font-size:11px;color:var(--text-dim);letter-spacing:1px;margin-bottom:12px;">Secure & Encrypted Checkout</p>
+          <div style="display:flex;justify-content:center;gap:12px;font-size:24px;color:var(--text-dim);">
+            <i class="fab fa-cc-visa"></i>
+            <i class="fab fa-cc-mastercard"></i>
+            <i class="fab fa-cc-amex"></i>
+            <i class="fab fa-google-pay"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {% else %}
+    <div class="empty-state" style="padding:100px 20px;">
+      <div class="empty-icon"><i class="fas fa-shopping-bag"></i></div>
+      <h2 class="empty-title">Your Cart is Empty</h2>
+      <p class="empty-text">Looks like you haven't added anything yet. Explore our collection.</p>
+      <a href="{% url 'shop' %}" class="btn btn-gold">Browse Collection</a>
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

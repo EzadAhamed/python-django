@@ -1,0 +1,201 @@
+/* ============================================
+   ZAVI LUXE — Contact Page Styles
+   ============================================ */
+
+/* Hero */
+.contact-hero {
+  padding: 140px 40px 80px;
+  text-align: center;
+  background: radial-gradient(ellipse at 50% 70%, rgba(201,169,110,0.08) 0%, transparent 65%),
+              var(--deep);
+  border-bottom: 1px solid var(--border);
+}
+
+.contact-hero .section-title { margin: 12px 0 16px; }
+
+.contact-hero-sub {
+  color: var(--text-dim);
+  font-size: 15px;
+  line-height: 1.8;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+/* Grid */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 60px;
+  align-items: start;
+}
+
+/* Info Column */
+.contact-info-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 300;
+  color: var(--white);
+}
+
+.contact-info-items { display: flex; flex-direction: column; gap: 24px; }
+
+.contact-info-item {
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+}
+
+.contact-info-icon {
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: var(--gold);
+  flex-shrink: 0;
+  transition: var(--transition);
+}
+.contact-info-item:hover .contact-info-icon {
+  background: var(--gold);
+  color: var(--black);
+  border-color: var(--gold);
+}
+
+.contact-info-label {
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 4px;
+}
+
+.contact-info-value {
+  font-size: 14px;
+  color: var(--text);
+  line-height: 1.6;
+  transition: color var(--transition);
+}
+a.contact-info-value:hover { color: var(--gold); }
+
+.contact-social { margin-top: 36px; }
+
+.contact-social-label {
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 16px;
+}
+
+/* Form Column */
+.contact-form-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 48px 44px;
+}
+
+.contact-form-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 300;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+
+.contact-form-sub {
+  font-size: 13px;
+  color: var(--text-dim);
+  margin-bottom: 32px;
+}
+
+.contact-form { display: flex; flex-direction: column; }
+
+.contact-success {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 24px;
+  background: rgba(201,169,110,0.08);
+  border: 1px solid var(--gold);
+  border-radius: 2px;
+  color: var(--gold);
+  font-size: 14px;
+}
+.contact-success i { font-size: 24px; flex-shrink: 0; }
+
+/* FAQ Section */
+.contact-faq-section {
+  background: var(--deep);
+  border-top: 1px solid var(--border);
+  padding: 80px 0;
+}
+
+.faq-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  background: var(--card);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  transition: var(--transition);
+}
+
+.faq-q {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 20px 24px;
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--text);
+  transition: color var(--transition);
+  user-select: none;
+}
+.faq-q:hover { color: var(--gold); }
+
+.faq-icon {
+  font-size: 12px;
+  color: var(--gold);
+  transition: transform var(--transition);
+  flex-shrink: 0;
+}
+
+.faq-a {
+  max-height: 0;
+  overflow: hidden;
+  padding: 0 24px;
+  font-size: 13px;
+  color: var(--text-dim);
+  line-height: 1.8;
+  transition: max-height 0.4s ease, padding 0.3s ease;
+}
+.faq-a a { color: var(--gold); }
+
+.faq-item.open .faq-a {
+  max-height: 200px;
+  padding: 0 24px 20px;
+}
+
+.faq-item.open .faq-icon {
+  transform: rotate(45deg);
+  color: var(--gold-light);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .contact-grid { grid-template-columns: 1fr; }
+  .faq-grid     { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 768px) {
+  .contact-hero { padding: 120px 20px 60px; }
+  .contact-form-card { padding: 32px 24px; }
+}

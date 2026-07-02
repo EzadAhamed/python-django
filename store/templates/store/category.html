@@ -1,0 +1,54 @@
+{% extends 'store/base.html' %}
+{% load static %}
+{% block title %}{{ category.name }} — Zavi Luxe{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'store/css/shop.css' %}">
+{% endblock %}
+
+{% block content %}
+<div style="padding-top:106px;min-height:80vh;">
+  <div class="page-header">
+    <div class="container">
+      <span class="section-eyebrow">Category</span>
+      <h1 class="page-title">{{ category.name }}</h1>
+      {% if category.description %}<p style="color:var(--text-dim);font-size:14px;margin-top:10px;">{{ category.description }}</p>{% endif %}
+    </div>
+  </div>
+  <div class="container" style="padding-top:40px;padding-bottom:80px;">
+    {% if products %}
+    <div class="product-grid">
+      {% for product in products %}
+      <div class="product-card">
+        <a href="{{ product.get_absolute_url }}">
+          <div class="product-image-wrap">
+            {% if product.image %}<img src="{{ product.image.url }}" alt="{{ product.name }}" loading="lazy">
+            {% else %}<div style="width:100%;height:100%;background:var(--dark);display:flex;align-items:center;justify-content:center;"><i class="fas fa-tshirt" style="font-size:48px;color:var(--muted);"></i></div>{% endif %}
+            {% if product.is_new_arrival %}<span class="product-badge badge-new">New</span>{% endif %}
+          </div>
+        </a>
+        <div class="product-actions">
+          <a href="{% url 'toggle_wishlist' product.id %}" class="product-action-btn"><i class="fas fa-heart"></i></a>
+        </div>
+        <div class="product-info">
+          <p class="product-category">{{ product.category.name }}</p>
+          <h3 class="product-name"><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></h3>
+          <div class="product-price">
+            <span class="price-current">₹{{ product.price }}</span>
+            {% if product.original_price %}<span class="price-original">₹{{ product.original_price }}</span>{% endif %}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="empty-state">
+      <div class="empty-icon"><i class="fas fa-tshirt"></i></div>
+      <h2 class="empty-title">No Products Yet</h2>
+      <p class="empty-text">Check back soon for new arrivals in {{ category.name }}.</p>
+      <a href="{% url 'shop' %}" class="btn btn-gold">View All</a>
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

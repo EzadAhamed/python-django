@@ -1,0 +1,235 @@
+{% extends 'store/base.html' %}
+{% load static %}
+
+{% block title %}{{ product.name }} — Zavi Luxe{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'store/css/product_detail.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="product-detail">
+  <div class="detail-grid">
+
+    <!-- Images -->
+    <div class="detail-images">
+      {% if product.image %}
+        <img src="{{ product.image.url }}" alt="{{ product.name }}" class="detail-main-image">
+      {% else %}
+        <div style="width:100%;height:100%;background:linear-gradient(135deg,#1c1c1c,#2c2c2c);display:flex;align-items:center;justify-content:center;">
+          <i class="fas fa-tshirt" style="font-size:80px;color:var(--muted);"></i>
+        </div>
+      {% endif %}
+      <!-- Thumbnails -->
+      {% if product.image2 or product.image3 %}
+      <div style="position:absolute;bottom:20px;left:20px;display:flex;gap:8px;">
+        <img src="{{ product.image.url }}" class="thumb-img active" style="width:64px;height:80px;object-fit:cover;cursor:pointer;border:2px solid var(--gold);">
+        {% if product.image2 %}<img src="{{ product.image2.url }}" class="thumb-img" style="width:64px;height:80px;object-fit:cover;cursor:pointer;border:2px solid transparent;">{% endif %}
+        {% if product.image3 %}<img src="{{ product.image3.url }}" class="thumb-img" style="width:64px;height:80px;object-fit:cover;cursor:pointer;border:2px solid transparent;">{% endif %}
+      </div>
+      {% endif %}
+    </div>
+
+    <!-- Info -->
+    <div class="detail-info">
+      <p class="detail-category">{{ product.category.name }}</p>
+      <h1 class="detail-title">{{ product.name }}</h1>
+
+      <!-- Rating summary -->
+      {% if avg_rating %}
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:20px;">
+        <div class="stars">
+          {% for i in "12345" %}
+            {% if forloop.counter <= avg_rating|floatformat:"0" %}★{% else %}<span class="star-empty">★</span>{% endif %}
+          {% endfor %}
+        </div>
+        <span style="font-size:13px;color:var(--text-dim);">{{ avg_rating }} ({{ reviews.count }} review{% if reviews.count != 1 %}s{% endif %})</span>
+      </div>
+      {% endif %}
+
+      <div class="detail-price-row">
+        <span class="detail-price">₹{{ product.price }}</span>
+        {% if product.original_price %}<span class="detail-original">₹{{ product.original_price }}</span>{% endif %}
+        {% if product.get_discount_percent > 0 %}<span class="detail-discount">{{ product.get_discount_percent }}% OFF</span>{% endif %}
+      </div>
+
+      <form method="POST" action="{% url 'add_to_cart' product.id %}">
+        {% csrf_token %}
+        <input type="hidden" name="size" id="selectedSize" value="{{ sizes.0 }}">
+        <input type="hidden" name="quantity" id="quantityField" value="1">
+
+        <!-- Size -->
+        <div class="size-selector">
+          <span class="size-label">Select Size</span>
+          <div class="size-options">
+            {% for size in sizes %}
+            <button type="button" class="size-btn {% if forloop.first %}active{% endif %}" data-size="{{ size }}">{{ size }}</button>
+            {% endfor %}
+          </div>
+        </div>
+
+        <!-- Quantity -->
+        <div class="quantity-row">
+          <span class="qty-label">Quantity</span>
+          <div class="qty-control">
+            <button type="button" class="qty-btn qty-minus">−</button>
+            <input type="text" class="qty-input" value="1" readonly id="qtyDisplay">
+            <button type="button" class="qty-plus qty-btn">+</button>
+          </div>
+        </div>
+
+        <div class="add-to-cart-row">
+          <button type="submit" class="btn btn-gold" style="flex:1;">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+          <a href="{% url 'toggle_wishlist' product.id %}" class="btn btn-outline {% if in_wishlist %}btn-gold{% endif %}" title="Wishlist">
+            <i class="fas fa-heart"></i>
+          </a>
+        </div>
+      </form>
+
+      <!-- Tabs -->
+      <div class="detail-tabs">
+        <div class="tab-headers">
+          <button class="tab-btn active" data-tab="tab-description">Description</button>
+          <button class="tab-btn" data-tab="tab-details">Details</button>
+          <button class="tab-btn" data-tab="tab-reviews">Reviews ({{ reviews.count }})</button>
+        </div>
+
+        <div class="tab-content active" id="tab-description">
+          <p>{{ product.description }}</p>
+        </div>
+
+        <div class="tab-content" id="tab-details">
+          <table style="width:100%;border-collapse:collapse;font-size:14px;">
+            <tr style="border-bottom:1px solid var(--border);">
+              <td style="padding:10px 0;color:var(--text-dim);width:40%;">Category</td>
+              <td style="padding:10px 0;">{{ product.category.name }}</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--border);">
+              <td style="padding:10px 0;color:var(--text-dim);">Available Sizes</td>
+              <td style="padding:10px 0;">{{ product.available_sizes }}</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--border);">
+              <td style="padding:10px 0;color:var(--text-dim);">Stock</td>
+              <td style="padding:10px 0;">{{ product.stock }} available</td>
+            </tr>
+            <tr>
+              <td style="padding:10px 0;color:var(--text-dim);">SKU</td>
+              <td style="padding:10px 0;">ZL-{{ product.id|stringformat:"04d" }}</td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="tab-content" id="tab-reviews">
+          {% if reviews %}
+            {% for review in reviews %}
+            <div class="review-card">
+              <div class="review-header">
+                <div class="reviewer-avatar">{{ review.user.username|first|upper }}</div>
+                <div>
+                  <p class="reviewer-name">{{ review.user.get_full_name|default:review.user.username }}</p>
+                  <p class="review-date">{{ review.created_at|date:"d M Y" }}</p>
+                </div>
+                <div class="stars" style="margin-left:auto;">
+                  {% for i in "12345" %}{% if forloop.counter <= review.rating %}★{% else %}<span class="star-empty">★</span>{% endif %}{% endfor %}
+                </div>
+              </div>
+              <p class="review-title">{{ review.title }}</p>
+              <p class="review-body">{{ review.body }}</p>
+            </div>
+            {% endfor %}
+          {% else %}
+            <p style="color:var(--text-dim);font-size:14px;padding:20px 0;">No reviews yet. Be the first to review this product!</p>
+          {% endif %}
+
+          {% if user.is_authenticated %}
+          <div style="margin-top:32px;padding-top:24px;border-top:1px solid var(--border);">
+            <h4 style="font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--white);margin-bottom:20px;">Write a Review</h4>
+            <form method="POST">
+              {% csrf_token %}
+              <div class="form-group">
+                <label class="form-label">Rating</label>
+                <select name="rating" class="form-select" style="width:auto;">
+                  {% for i in "54321" %}<option value="{{ i }}">{{ i }} ★</option>{% endfor %}
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Title</label>
+                <input type="text" name="title" class="form-input" placeholder="Review title" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Your Review</label>
+                <textarea name="body" class="form-textarea" placeholder="Share your experience..." required></textarea>
+              </div>
+              <button type="submit" class="btn btn-gold">Submit Review</button>
+            </form>
+          </div>
+          {% else %}
+          <p style="color:var(--text-dim);font-size:13px;margin-top:20px;">
+            <a href="{% url 'login' %}" style="color:var(--gold);">Login</a> to write a review.
+          </p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Related Products -->
+  {% if related %}
+  <section class="section" style="background:var(--deep);border-top:1px solid var(--border);">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">You May Also Like</span>
+        <h2 class="section-title">Related <em>Pieces</em></h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="product-grid">
+        {% for p in related %}
+        <div class="product-card">
+          <a href="{{ p.get_absolute_url }}">
+            <div class="product-image-wrap">
+              {% if p.image %}<img src="{{ p.image.url }}" alt="{{ p.name }}">
+              {% else %}<div style="width:100%;height:100%;background:var(--dark);display:flex;align-items:center;justify-content:center;"><i class="fas fa-tshirt" style="font-size:48px;color:var(--muted);"></i></div>{% endif %}
+            </div>
+          </a>
+          <div class="product-info">
+            <p class="product-category">{{ p.category.name }}</p>
+            <h3 class="product-name"><a href="{{ p.get_absolute_url }}">{{ p.name }}</a></h3>
+            <div class="product-price"><span class="price-current">₹{{ p.price }}</span></div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+  {% endif %}
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  // Sync qty display with hidden input
+  const qtyDisplay = document.getElementById('qtyDisplay');
+  const qtyField = document.getElementById('quantityField');
+  const minus = document.querySelector('.qty-minus');
+  const plus = document.querySelector('.qty-plus');
+  if (minus && plus && qtyDisplay && qtyField) {
+    minus.addEventListener('click', () => {
+      let v = parseInt(qtyDisplay.value);
+      if (v > 1) { qtyDisplay.value = v - 1; qtyField.value = v - 1; }
+    });
+    plus.addEventListener('click', () => {
+      let v = parseInt(qtyDisplay.value);
+      qtyDisplay.value = v + 1; qtyField.value = v + 1;
+    });
+  }
+  // Size select updates hidden field
+  document.querySelectorAll('.size-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      document.getElementById('selectedSize').value = this.dataset.size;
+    });
+  });
+</script>
+{% endblock %}

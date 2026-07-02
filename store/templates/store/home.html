@@ -1,0 +1,213 @@
+{% extends 'store/base.html' %}
+{% load static %}
+
+{% block title %}Zavi Luxe — Elevated Fashion{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'store/css/home.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <img src="{% static 'store/images/logo8.png' %}" alt="Zavi Luxe" class="hero-logo">
+    <p class="hero-eyebrow">The New Season Collection</p>
+    <h1 class="hero-title">Dress With <em>Intent</em></h1>
+    <p class="hero-subtitle">Curated fashion for those who wear their story with grace.</p>
+    <div class="hero-actions">
+      <a href="{% url 'shop' %}" class="btn btn-gold">Explore Collection</a>
+      <a href="{% url 'shop' %}?category=new" class="btn btn-outline">New Arrivals</a>
+    </div>
+  </div>
+</section>
+
+<!-- Marquee -->
+<div class="marquee-section">
+  <div class="marquee-track">
+    {% for item in "12345678"|make_list %}
+    <span class="marquee-item">✦ Luxury Fashion</span>
+    <span class="marquee-item">✦ Free Shipping Over ₹2999</span>
+    <span class="marquee-item">✦ New Arrivals Weekly</span>
+    <span class="marquee-item">✦ Premium Quality</span>
+    <span class="marquee-item">✦ Easy Returns</span>
+    {% endfor %}
+  </div>
+</div>
+
+<!-- Categories -->
+{% if categories %}
+<section class="categories-strip">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">Browse By</span>
+      <h2 class="section-title">Shop by <em>Category</em></h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="categories-grid">
+      {% for cat in categories %}
+      <a href="{% url 'category' cat.slug %}" class="category-card">
+        {% if cat.image %}
+        <img src="{{ cat.image.url }}" alt="{{ cat.name }}">
+        {% else %}
+        <div style="width:100%;height:100%;background:linear-gradient(135deg,#1a1a1a,#2a2a2a);"></div>
+        {% endif %}
+        <div class="category-info">
+          <h3>{{ cat.name }}</h3>
+          <span>{{ cat.products.count }} Products →</span>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- Featured Products -->
+{% if featured %}
+<section class="section" style="background:var(--black);">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">Editor's Picks</span>
+      <h2 class="section-title">Featured <em>Collection</em></h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="product-grid">
+      {% for product in featured %}
+      <div class="product-card">
+        <a href="{{ product.get_absolute_url }}">
+          <div class="product-image-wrap">
+            {% if product.image %}
+            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+            {% else %}
+            <div
+              style="width:100%;height:100%;background:linear-gradient(135deg,#1c1c1c,#2c2c2c);display:flex;align-items:center;justify-content:center;">
+              <i class="fas fa-tshirt" style="font-size:48px;color:var(--muted);"></i>
+            </div>
+            {% endif %}
+            {% if product.is_new_arrival %}<span class="product-badge badge-new">New</span>{% endif %}
+            {% if product.get_discount_percent > 0 %}<span class="product-badge badge-sale" style="top:44px;">-{{ product.get_discount_percent }}%</span>{% endif %}
+          </div>
+        </a>
+        <div class="product-actions">
+          <a href="{% url 'toggle_wishlist' product.id %}" class="product-action-btn" title="Wishlist">
+            <i class="fas fa-heart"></i>
+          </a>
+          <a href="{{ product.get_absolute_url }}" class="product-action-btn" title="Quick View">
+            <i class="fas fa-eye"></i>
+          </a>
+        </div>
+        <div class="product-info">
+          <p class="product-category">{{ product.category.name }}</p>
+          <h3 class="product-name"><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></h3>
+          <div class="product-price">
+            <span class="price-current">₹{{ product.price }}</span>
+            {% if product.original_price %}<span class="price-original">₹{{ product.original_price }}</span>{% endif %}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="text-center mt-4">
+      <a href="{% url 'shop' %}" class="btn btn-outline">View All Products</a>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- New Arrivals -->
+{% if new_arrivals %}
+<section class="section" style="background:var(--deep);">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">Just Landed</span>
+      <h2 class="section-title">New <em>Arrivals</em></h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="product-grid">
+      {% for product in new_arrivals %}
+      <div class="product-card">
+        <a href="{{ product.get_absolute_url }}">
+          <div class="product-image-wrap">
+            {% if product.image %}
+            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+            {% else %}
+            <div
+              style="width:100%;height:100%;background:linear-gradient(135deg,#1c1c1c,#2c2c2c);display:flex;align-items:center;justify-content:center;">
+              <i class="fas fa-tshirt" style="font-size:48px;color:var(--muted);"></i>
+            </div>
+            {% endif %}
+            <span class="product-badge badge-new">New</span>
+          </div>
+        </a>
+        <div class="product-actions">
+          <a href="{% url 'toggle_wishlist' product.id %}" class="product-action-btn"><i class="fas fa-heart"></i></a>
+          <a href="{{ product.get_absolute_url }}" class="product-action-btn"><i class="fas fa-eye"></i></a>
+        </div>
+        <div class="product-info">
+          <p class="product-category">{{ product.category.name }}</p>
+          <h3 class="product-name"><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></h3>
+          <div class="product-price">
+            <span class="price-current">₹{{ product.price }}</span>
+            {% if product.original_price %}<span class="price-original">₹{{ product.original_price }}</span>{% endif %}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- USP Strip -->
+<section class="section-sm"
+  style="background:var(--dark);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:2px;text-align:center;">
+      {% for item in usp_items|default:"" %}{% endfor %}
+      <div style="padding:32px 20px;border-right:1px solid var(--border);">
+        <i class="fas fa-truck" style="font-size:28px;color:var(--gold);margin-bottom:16px;display:block;"></i>
+        <h4 style="font-family:'Cinzel',serif;font-size:13px;letter-spacing:2px;color:var(--white);margin-bottom:8px;">
+          Free Shipping</h4>
+        <p style="font-size:12px;color:var(--text-dim);">On orders above ₹2999</p>
+      </div>
+      <div style="padding:32px 20px;border-right:1px solid var(--border);">
+        <i class="fas fa-undo" style="font-size:28px;color:var(--gold);margin-bottom:16px;display:block;"></i>
+        <h4 style="font-family:'Cinzel',serif;font-size:13px;letter-spacing:2px;color:var(--white);margin-bottom:8px;">
+          Easy Returns</h4>
+        <p style="font-size:12px;color:var(--text-dim);">30 day return policy</p>
+      </div>
+      <div style="padding:32px 20px;border-right:1px solid var(--border);">
+        <i class="fas fa-shield-alt" style="font-size:28px;color:var(--gold);margin-bottom:16px;display:block;"></i>
+        <h4 style="font-family:'Cinzel',serif;font-size:13px;letter-spacing:2px;color:var(--white);margin-bottom:8px;">
+          Secure Payments</h4>
+        <p style="font-size:12px;color:var(--text-dim);">100% safe checkout</p>
+      </div>
+      <div style="padding:32px 20px;">
+        <i class="fas fa-gem" style="font-size:28px;color:var(--gold);margin-bottom:16px;display:block;"></i>
+        <h4 style="font-family:'Cinzel',serif;font-size:13px;letter-spacing:2px;color:var(--white);margin-bottom:8px;">
+          Premium Quality</h4>
+        <p style="font-size:12px;color:var(--text-dim);">Curated luxury pieces</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% if not featured and not new_arrivals %}
+<!-- Empty State for Fresh Install -->
+<section class="section" style="background:var(--black);">
+  <div class="container">
+    <div class="empty-state">
+      <div class="empty-icon"><i class="fas fa-tshirt"></i></div>
+      <h2 class="empty-title">Welcome to Zavi Luxe</h2>
+      <p class="empty-text">Your luxury fashion store is ready. Start by adding products through the admin panel.</p>
+      <a href="/admin/" class="btn btn-gold">Go to Admin</a>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% endblock %}

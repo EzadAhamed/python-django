@@ -1,0 +1,168 @@
+{% extends 'store/base.html' %}
+{% load static %}
+
+{% block title %}About Us — Zavi Luxe{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'store/css/about.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<!-- Hero -->
+<section class="about-hero">
+  <div class="about-hero-bg"></div>
+  <div class="about-hero-content">
+    <span class="section-eyebrow">Our Story</span>
+    <h1 class="about-hero-title">Where Elegance<br><em>Meets Craft</em></h1>
+    <p class="about-hero-sub">Born from a passion for timeless style, Zavi Luxe is more than a brand — it is a
+      philosophy.</p>
+  </div>
+</section>
+
+<!-- Story Section -->
+<section class="section">
+  <div class="container">
+    <div class="about-story-grid">
+      <div class="about-story-text">
+        <span class="section-eyebrow">The Beginning</span>
+        <h2 class="section-title">Crafting <em>Luxury</em><br>for Every Moment</h2>
+        <div class="section-line" style="margin: 20px 0;"></div>
+        <p class="about-body">Zavi Luxe was founded with a singular vision — to bring elevated, sophisticated fashion
+          within reach. We believe that exceptional style should not be reserved for a select few, but woven into the
+          fabric of everyday life.</p>
+        <p class="about-body">Each piece in our collection is thoughtfully curated by designers who understand the
+          balance between heritage craftsmanship and contemporary aesthetics. From the drape of a fabric to the
+          precision of a stitch, every detail matters.</p>
+        <p class="about-body">Our journey began in a small atelier, driven by the belief that fashion is the most
+          intimate form of self-expression. That belief continues to guide every collection we create.</p>
+      </div>
+      <div class="about-story-visual">
+        <div class="about-image-stack">
+          <div class="about-img-card about-img-card--1">
+            <div class="about-img-placeholder">
+              <i class="fas fa-gem"></i>
+            </div>
+          </div>
+          <div class="about-img-card about-img-card--2">
+            <div class="about-img-placeholder">
+              <i class="fas fa-leaf"></i>
+            </div>
+          </div>
+          <div class="about-stats-badge">
+            <span class="about-stat-number">10+</span>
+            <span class="about-stat-label">Years of Excellence</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Values Section -->
+<section class="section about-values-section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">What We Stand For</span>
+      <h2 class="section-title">Our <em>Core Values</em></h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="about-values-grid">
+      <div class="about-value-card">
+        <div class="about-value-icon"><i class="fas fa-gem"></i></div>
+        <h3 class="about-value-title">Uncompromising Quality</h3>
+        <p class="about-value-text">Every material is hand-selected. Every stitch is deliberate. We accept nothing less
+          than excellence in every piece that bears the Zavi Luxe name.</p>
+      </div>
+      <div class="about-value-card">
+        <div class="about-value-icon"><i class="fas fa-leaf"></i></div>
+        <h3 class="about-value-title">Sustainable Luxury</h3>
+        <p class="about-value-text">Responsible fashion is beautiful fashion. We are committed to ethical sourcing,
+          eco-conscious production, and reducing our environmental footprint.</p>
+      </div>
+      <div class="about-value-card">
+        <div class="about-value-icon"><i class="fas fa-palette"></i></div>
+        <h3 class="about-value-title">Timeless Design</h3>
+        <p class="about-value-text">We create pieces that transcend seasons. Our design philosophy is rooted in enduring
+          elegance — styles that look as beautiful tomorrow as they do today.</p>
+      </div>
+      <div class="about-value-card">
+        <div class="about-value-icon"><i class="fas fa-heart"></i></div>
+        <h3 class="about-value-title">Customer First</h3>
+        <p class="about-value-text">Your experience matters deeply to us. From the moment you browse to the day your
+          order arrives, we are dedicated to making it exceptional.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Numbers Section -->
+<section class="section about-numbers-section">
+  <div class="container">
+    <div class="about-numbers-grid">
+      <div class="about-number-item">
+        <span class="about-number">10K+</span>
+        <span class="about-number-label">Happy Customers</span>
+      </div>
+      <div class="about-number-item">
+        <span class="about-number">500+</span>
+        <span class="about-number-label">Curated Styles</span>
+      </div>
+      <div class="about-number-item">
+        <span class="about-number">50+</span>
+        <span class="about-number-label">Designer Collaborations</span>
+      </div>
+      <div class="about-number-item">
+        <span class="about-number">5★</span>
+        <span class="about-number-label">Average Rating</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Team -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">The Minds Behind Zavi Luxe</span>
+      <h2 class="section-title">Meet Our <em>Team</em></h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="about-team-grid">
+      <div class="about-team-card">
+        <div class="about-team-avatar"><i class="fas fa-user"></i></div>
+        <h4 class="about-team-name">Mohammed Tofik</h4>
+        <p class="about-team-role">Founder & Creative Director</p>
+        <p class="about-team-bio">With over 35 years in experience in the clothings industry, his vision shapes every
+          collection Zavi Luxe creates.</p>
+      </div>
+      <div class="about-team-card">
+        <div class="about-team-avatar"><i class="fas fa-user"></i></div>
+        <h4 class="about-team-name">Sharmila</h4>
+        <p class="about-team-role">Co-Founder</p>
+        <p class="about-team-bio">Main pillar who took the company to heights with non-stop hard work</p>
+      </div>
+      <div class="about-team-card">
+        <div class="about-team-avatar"><i class="fas fa-user"></i></div>
+        <h4 class="about-team-name">Ezad Ahamed</h4>
+        <p class="about-team-role">Technical Lead</p>
+        <p class="about-team-bio">He is the one who manages the website and the online presence of the company.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="about-cta-section">
+  <div class="container">
+    <div class="about-cta-inner">
+      <span class="section-eyebrow">Begin Your Journey</span>
+      <h2 class="about-cta-title">Experience the Zavi Luxe<br><em>Difference</em></h2>
+      <p class="about-cta-text">Discover collections crafted for those who appreciate the finer details. Elevated
+        fashion, delivered with care.</p>
+      <a href="{% url 'shop' %}" class="btn btn-gold">Explore Collection</a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

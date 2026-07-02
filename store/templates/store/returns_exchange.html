@@ -1,0 +1,177 @@
+{% extends 'store/base.html' %}
+{% load static %}
+
+{% block title %}Returns & Exchange — Zavi Luxe{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'store/css/policy.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<!-- Page Header -->
+<div class="policy-hero">
+  <div class="container">
+    <span class="section-eyebrow">Hassle-Free</span>
+    <h1 class="section-title">Returns &amp; <em>Exchange</em></h1>
+    <p class="policy-hero-sub">Your satisfaction is our priority. We've made returns and exchanges simple and stress-free.</p>
+  </div>
+</div>
+
+<!-- Quick Summary Cards -->
+<section class="section-sm">
+  <div class="container">
+    <div class="policy-summary-grid">
+      <div class="policy-summary-card">
+        <div class="policy-summary-icon"><i class="fas fa-undo-alt"></i></div>
+        <h3 class="policy-summary-title">7-Day Returns</h3>
+        <p class="policy-summary-text">Return eligible items within 7 days of delivery — no questions asked.</p>
+      </div>
+      <div class="policy-summary-card">
+        <div class="policy-summary-icon"><i class="fas fa-exchange-alt"></i></div>
+        <h3 class="policy-summary-title">Easy Exchange</h3>
+        <p class="policy-summary-text">Swap for a different size or colour with no extra charges.</p>
+      </div>
+      <div class="policy-summary-card">
+        <div class="policy-summary-icon"><i class="fas fa-wallet"></i></div>
+        <h3 class="policy-summary-title">Quick Refund</h3>
+        <p class="policy-summary-text">Refunds processed within 5–7 business days to your original payment method.</p>
+      </div>
+      <div class="policy-summary-card">
+        <div class="policy-summary-icon"><i class="fas fa-headset"></i></div>
+        <h3 class="policy-summary-title">Dedicated Support</h3>
+        <p class="policy-summary-text">Our team is here to guide you through every step of the process.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- How It Works -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">Step by Step</span>
+      <h2 class="section-title">How to Initiate a <em>Return</em></h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="policy-steps">
+      <div class="policy-step">
+        <div class="policy-step-num">01</div>
+        <div class="policy-step-body">
+          <h4 class="policy-step-title">Initiate Return</h4>
+          <p class="policy-step-text">Head over to your <a href="{% url 'orders' %}" class="text-gold">My Orders</a> page, locate the eligible order, and hit the <strong>Request Return</strong> button. Alternatively, you can email us at <a href="mailto:zaviiiluxe@gmail.com" class="text-gold">zaviiiluxe@gmail.com</a> with your details.</p>
+        </div>
+      </div>
+      <div class="policy-step">
+        <div class="policy-step-num">02</div>
+        <div class="policy-step-body">
+          <h4 class="policy-step-title">Get Approval</h4>
+          <p class="policy-step-text">Our team will review your request and send you a Return Merchandise Authorisation (RMA) number and return shipping label within 24 hours.</p>
+        </div>
+      </div>
+      <div class="policy-step">
+        <div class="policy-step-num">03</div>
+        <div class="policy-step-body">
+          <h4 class="policy-step-title">Pack &amp; Ship</h4>
+          <p class="policy-step-text">Repackage the item(s) securely in the original packaging if possible. Attach the provided return label and drop it off at your nearest courier partner.</p>
+        </div>
+      </div>
+      <div class="policy-step">
+        <div class="policy-step-num">04</div>
+        <div class="policy-step-body">
+          <h4 class="policy-step-title">Receive Refund / Exchange</h4>
+          <p class="policy-step-text">Once we receive and inspect the item, we'll process your refund or dispatch the exchange item. Refunds land in 5–7 business days.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Policy Details -->
+<section class="section policy-details-section">
+  <div class="container">
+    <div class="policy-details-grid">
+
+      <div class="policy-details-col">
+        <h3 class="policy-details-title"><i class="fas fa-check-circle text-gold"></i> Eligible for Return</h3>
+        <ul class="policy-list">
+          <li>Items in original, unworn condition</li>
+          <li>Items with all original tags attached</li>
+          <li>Items in original packaging</li>
+          <li>Defective or damaged items (any time)</li>
+          <li>Wrong item received</li>
+          <li>Requests raised within 7 days of delivery</li>
+        </ul>
+      </div>
+
+      <div class="policy-details-col">
+        <h3 class="policy-details-title"><i class="fas fa-times-circle" style="color:#e55;"></i> Not Eligible for Return</h3>
+        <ul class="policy-list policy-list--no">
+          <li>Items that have been worn, washed, or altered</li>
+          <li>Items without original tags or packaging</li>
+          <li>Intimate apparel and swimwear (hygiene reasons)</li>
+          <li>Customised or personalised items</li>
+          <li>Items purchased during final sale events</li>
+          <li>Requests raised after 7 days of delivery</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Exchange Policy -->
+<section class="section">
+  <div class="container">
+    <div class="policy-exchange-box">
+      <div class="policy-exchange-icon"><i class="fas fa-exchange-alt"></i></div>
+      <div class="policy-exchange-content">
+        <h3 class="policy-exchange-title">Exchange Policy</h3>
+        <p>We offer free size and colour exchanges on all eligible items within 7 days of delivery. Simply select your preferred replacement during the exchange request process. If there is a price difference, you will be charged or refunded accordingly. Exchange shipments are dispatched within 2–3 business days after we receive the returned item.</p>
+        <a href="{% url 'contact' %}" class="btn btn-outline btn-sm" style="margin-top: 20px; display: inline-flex;">Request Exchange</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Refund Timeline -->
+<section class="section-sm">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">Transparency Matters</span>
+      <h2 class="section-title">Refund <em>Timeline</em></h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="refund-timeline">
+      <div class="refund-item">
+        <span class="refund-method">Credit / Debit Card</span>
+        <span class="refund-days">5–7 Business Days</span>
+      </div>
+      <div class="refund-item">
+        <span class="refund-method">UPI / Net Banking</span>
+        <span class="refund-days">3–5 Business Days</span>
+      </div>
+      <div class="refund-item">
+        <span class="refund-method">Zavi Luxe Store Credit</span>
+        <span class="refund-days">Instant</span>
+      </div>
+      <div class="refund-item">
+        <span class="refund-method">Cash on Delivery (COD)</span>
+        <span class="refund-days">Bank Transfer within 7 Days</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="policy-cta-section">
+  <div class="container">
+    <div class="policy-cta-inner">
+      <h2 class="policy-cta-title">Still have questions?</h2>
+      <p class="policy-cta-text">Our customer care team is happy to help you with any return or exchange queries.</p>
+      <a href="{% url 'contact' %}" class="btn btn-gold">Contact Support</a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

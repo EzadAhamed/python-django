@@ -1,0 +1,131 @@
+/* ============================================
+   ZAVI LUXE — Order Confirmation Page Styles
+   ============================================ */
+
+.confirmation-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--deep);
+  padding: 120px 20px;
+}
+
+.confirmation-card {
+  text-align: center;
+  max-width: 560px;
+  background: var(--dark);
+  border: 1px solid var(--border);
+  padding: 60px 48px;
+}
+
+.confirmation-icon  { font-size: 60px; color: var(--gold); margin-bottom: 24px; }
+.confirmation-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 40px;
+  font-weight: 300;
+  color: var(--white);
+  margin-bottom: 12px;
+}
+
+.order-number-badge {
+  display: inline-block;
+  background: rgba(201,169,110,0.15);
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  padding: 8px 24px;
+  font-size: 13px;
+  letter-spacing: 2px;
+  margin: 16px 0 24px;
+}
+
+/* Order Tracker Styles */
+.order-tracker {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: 40px 0;
+  position: relative;
+  padding: 0 10px;
+}
+
+.tracker-line {
+  position: absolute;
+  top: 12px;
+  left: 40px;
+  right: 40px;
+  height: 2px;
+  background: #333;
+  z-index: 1;
+}
+
+.tracker-line-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: #27ae60;
+  transition: width 0.8s ease;
+}
+
+.progress-0   { width: 0%; }
+.progress-25  { width: 25%; }
+.progress-75  { width: 75%; }
+.progress-100 { width: 100%; }
+
+.tracker-step {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90px;
+  text-align: center;
+}
+
+.tracker-dot {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--dark);
+  border: 2px solid #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+  transition: all 0.3s;
+  font-size: 11px;
+  color: transparent;
+}
+
+.tracker-step.completed .tracker-dot {
+  background: #27ae60;
+  border-color: #27ae60;
+  color: white;
+}
+
+.tracker-step.active .tracker-dot {
+  background: var(--dark);
+  border-color: #27ae60;
+  box-shadow: 0 0 0 4px rgba(39, 174, 96, 0.2);
+}
+
+.tracker-label {
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--text-dim);
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.tracker-step.completed .tracker-label,
+.tracker-step.active .tracker-label {
+  color: var(--white);
+}
+
+.tracker-date {
+  font-size: 10px;
+  color: var(--gold);
+  opacity: 0.8;
+}
